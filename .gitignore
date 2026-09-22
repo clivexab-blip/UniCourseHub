@@ -1,0 +1,55 @@
+# Android/IntelliJ/Gradle GitIgnore
+
+# Build artifacts
+build/
+app/build/
+bin/
+gen/
+out/
+.gradle/
+.navigation/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Local configuration
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+cmake-build-*/
+
+# Secrets & Keys (Safety First)
+*.keystore
+*.jks
+!debug.keystore
+google-services.json
+
+# User specific files
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Mobile Specific
+/app/release/
+/app/debug/
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class

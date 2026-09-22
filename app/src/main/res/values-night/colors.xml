@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="primary">#818CF8</color>
+    <color name="primary_dark">#6366F1</color>
+    <color name="primary_light">#312E81</color>
+    <color name="secondary_pink">#F472B6</color>
+
+    <!-- Status -->
+    <color name="success">#34D399</color>
+    <color name="success_bg">#064E3B</color>
+    <color name="warning">#FBBF24</color>
+    <color name="warning_bg">#78350F</color>
+    <color name="danger">#F87171</color>
+    <color name="danger_bg">#7F1D1D</color>
+    <color name="info">#60A5FA</color>
+    <color name="info_bg">#1E3A8A</color>
+    <color name="purple_bg">#4C1D95</color>
+    <color name="purple_text">#C4B5FD</color>
+
+    <!-- Neutral -->
+    <color name="background">#0F172A</color>
+    <color name="surface">#1E293B</color>
+    <color name="bg_input">#334155</color>
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_hint">#64748B</color>
+    <color name="divider">#334155</color>
+    <color name="bg_icon_circle">#334155</color>
+    <color name="white">#F8FAFC</color>
+    <color name="black">#020617</color>
+</resources>

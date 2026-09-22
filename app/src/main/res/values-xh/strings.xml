@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCourse Hub</string>
+    <string name="app_tagline">Funda, Yabelana, Khula</string>
+
+    <!-- Login -->
+    <string name="login_welcome_back">Wamkelekile Kwakhona</string>
+    <string name="login_subtitle">Ngena ukuze uqhubeke nokufunda</string>
+    <string name="login_email_label">I-imeyile</string>
+    <string name="login_email_hint">wena@university.edu</string>
+    <string name="login_password_label">Igama eligqithisiweyo</string>
+    <string name="login_password_hint">••••••••</string>
+    <string name="login_btn_text">Ngena</string>
+    <string name="login_or_divider">OKANYE</string>
+    <string name="login_google_sign_in">Qhubeka ne-Google</string>
+    <string name="login_no_account">Awunayo i-akhawunti? </string>
+    <string name="login_create_account">Dala i-akhawunti</string>
+    <string name="login_footer_note">Umtsha apha? Bhalisa nge-imeyile, okanye uqhubeke ne-Google — uya kukhetha indima yakho (uMfundi / uMhlohli / uMlawuli) kwangoko emva koko.</string>
+    <string name="desc_app_logo">Ilogo ye-App</string>
+
+    <!-- Register -->
+    <string name="register_title">Dala i-akhawunti</string>
+    <string name="register_subtitle">Joyina uluntu olufundayo</string>
+    <string name="register_full_name_label">Igama elizeleyo *</string>
+    <string name="register_full_name_hint">Faka igama lakho elizeleyo</string>
+    <string name="register_email_label">I-imeyile *</string>
+    <string name="register_email_hint">Faka i-imeyile yakho</string>
+    <string name="register_university_label">Iyunivesithi *</string>
+    <string name="register_university_hint">Faka iyunivesithi yakho</string>
+    <string name="register_student_id_label">uMfundi / i-ID yabaSebenzi *</string>
+    <string name="register_student_id_hint">Faka i-ID yakho yomfundi</string>
+    <string name="register_password_label">Igama eligqithisiweyo *</string>
+    <string name="register_password_hint">Dala igama eligqithisiweyo (ubuncinci bamagama ama-6)</string>
+    <string name="register_password_note">Sebenzisa ama-6+ oonobumba, umxube woonobumba abakhulu, abancinci, amanani, kunye neempawu</string>
+    <string name="register_confirm_password_label">Qinisekisa Igama eligqithisiweyo *</string>
+    <string name="register_confirm_password_hint">Qinisekisa igama lakho eligqithisiweyo</string>
+    <string name="register_role_label">Indima *</string>
+    <string name="register_btn_text">Dala i-akhawunti</string>
+    <string name="register_google_sign_up">Bhalisa ne-Google</string>
+    <string name="register_already_have_account">Sele unayo i-akhawunti? </string>
+    <string name="desc_back_button">Emuva</string>
+
+    <!-- Complete Profile -->
+    <string name="cp_title">Inyathelo eliye linye lokugqibela</string>
+    <string name="cp_subtitle">Sisekele kancinci ngawe ukuze ugqibe ukuseta i-akhawunti yakho</string>
+    <string name="cp_btn_continue">Qhubeka</string>
+    <string name="cp_already_have_account">Sele unayo i-akhawunti? Ngena</string>
+    <string name="cp_new_here_register">Umtsha apha? Dala i-akhawunti</string>
+
+    <!-- Video Learning -->
+    <string name="video_completion_format">%d%% Igqityiwe</string>
+
+    <!-- Post Course -->
+    <string name="error_fill_fields">Nceda uzalise yonke imimandla efunekayo.</string>
+
+    <!-- Admin Dashboard -->
+    <string name="admin_welcome">Wamkelekile kwakhona, Mlawuli!</string>
+    <string name="admin_subtitle">Isishwankathelo seqonga kunye nolawulo</string>
+    <string name="admin_total_users">Bonke abasebenzisi</string>
+    <string name="admin_total_courses">Zonke iikhosi</string>
+    <string name="admin_pending_approvals">Ukuvunywa okulindileyo</string>
+    <string name="admin_manage_users">Lawula abasebenzisi</string>
+    <string name="admin_manage_users_desc">Jonga kwaye ulawule bonke abasebenzisi</string>
+    <string name="admin_manage_courses">Lawula iikhosi</string>
+    <string name="admin_manage_courses_desc">Vuma kwaye ulungelelanise iikhosi</string>
+    <string name="admin_manage_projects">Lawula iiprojekthi</string>
+    <string name="admin_manage_projects_desc">Hlola iiprojekthi zabafundi</string>
+    <string name="admin_pending_desc">Iikhosi kunye neeprojekthi zokuhlola</string>
+    <string name="desc_dashboard_icon">I-ayikhoni ye-Dashboard</string>
+    <string name="zero">0</string>
+    <string name="register_already_have_account_login">Sele unayo i-akhawunti? Ngena</string>
+    <string name="menu_references">Iimbekiselo ezigciniweyo</string>
+    <string name="menu_settings">Izicwangciso</string>
+    <string name="settings_title">Izicwangciso ze-App</string>
+    <string name="settings_appearance">Imbonakalo</string>
+    <string name="settings_dark_mode">Imowudi emnyama</string>
+    <string name="settings_language">Ulwimi</string>
+    <string name="settings_account">I-akhawunti noKhuseleko</string>
+    <string name="settings_change_password">Tshintsha igama eligqithisiweyo</string>
+    <string name="settings_privacy">Umgaqo-nkqubo wabucala</string>
+    <string name="settings_delete">Cima i-akhawunti</string>
+    <string name="settings_version">UniCourse Hub v1.0</string>
+
+    <!-- Downloads -->
+    <string name="title_downloads">Izinto Ezikhutshelweyo Zam</string>
+    <string name="subtitle_downloads">Fikelela kwizifundo zakho ozikhuphelele ngaphandle kwe-intanethi</string>
+    <string name="empty_downloads">Akukho zinto zikhutshelweyo okwangoku.\nKhuphela izifundo kwi-Video Learning ukuze uzibone apha.</string>
+
+    <!-- Dashboard Titles -->
+    <string name="dashboard_title">I-Dashboard</string>
+
+    <!-- Student Dashboard -->
+    <string name="student_dashboard_welcome">Wamkelekile kwakhona!</string>
+    <string name="student_dashboard_subtitle">Uhambo lwakho lokufunda luyaqhubeka</string>
+    <string name="stat_enrolled_courses">Iikhosi ezibhalisiweyo</string>
+    <string name="stat_my_projects">Iiprojekthi zam</string>
+    <string name="stat_hours_learned">Iiyure ezifundiweyo</string>
+    <string name="section_continue_learning">Qhubeka nokufunda</string>
+    <string name="student_dashboard_empty_state">Awukabhaliswa kuyo nayiphi na ikhosi okwangoku. Yiya kwi-tab yeeKhosi ukuze uqalise!</string>
+
+    <!-- Instructor Dashboard -->
+    <string name="instructor_dashboard_welcome">Wamkelekile kwakhona!</string>
+    <string name="instructor_dashboard_subtitle">Lawula iikhosi zakho kunye nabafundi</string>
+    <string name="stat_my_courses">Iikhosi zam</string>
+    <string name="stat_students">Abafundi</string>
+    <string name="stat_pending_reviews">Uphengululo olulindileyo</string>
+    <string name="section_course_overview">Isishwankathelo seKhosi</string>
+    <string name="section_recent_submissions">Izinto ezingeniswe kutshanje ngabaFundi</string>
+
+    <!-- Video Learning -->
+    <string name="video_insights_header">💡 Iingcebiso zoMphuhlisi oPhezulu</string>
+    <string name="video_insights_default">Ikhowudi ecocekileyo yikhowudi efundekayo.</string>
+    <string name="video_default_course_title">I-Full Stack Web Dev</string>
+    <string name="video_rating_format">%.1f uHlelo</string>
+    <string name="video_select_lesson">Khetha isifundo ngezantsi</string>
+    <string name="btn_confusing">⚠️ Iyabhidanisa</string>
+    <string name="btn_download">⬇️ Khuphela</string>
+    <string name="btn_save">🔖 Gcina</string>
+    <string name="video_rate_label">Hlela le vidiyo:</string>
+    <string name="btn_view_doc">📄 Jonga uXwebhu</string>
+    <string name="btn_take_quiz">📝 Thatha i-Quiz</string>
+    <string name="btn_ask_question">Thumela uMbuzo okanye uluvo</string>
+    <string name="msg_comment_success">Uluvo luthunyelwe ngempumelelo! Umhlohli wakho uya kwaziswa.</string>
+    <string name="section_comments">Izimvo kunye neMibuzo</string>
+    <string name="hint_ask_question">Buza umbuzo...</string>
+    <string name="btn_post">Thumela</string>
+    <string name="video_no_course_state">Bhalisa kwikhosi ukusuka kwithebhu yeeKhosi ukuze uqalise ukufunda!</string>
+
+    <!-- Post Course -->
+    <string name="title_create_course">Dala iKhosi eNtsha</string>
+    <string name="subtitle_create_course">ⓘ Dala ikhosi entsha yabafundi bakho</string>
+    <string name="label_course_title">Isihloko seKhosi *</string>
+    <string name="hint_course_title">umz., i-Advanced Web Development</string>
+    <string name="label_course_code">IKhowudi yeKhosi *</string>
+    <string name="hint_course_code">umz., CS 501</string>
+    <string name="label_category">Icandelo *</string>
+    <string name="label_semester">ISemesta *</string>
+    <string name="label_course_description">Inkcazelo yeKhosi *</string>
+    <string name="hint_course_description">Chaza ikhosi yakho...</string>
+    <string name="btn_create_course">Dala iKhosi</string>
+
+    <!-- Post Lesson -->
+    <string name="title_add_lesson">Yongeza iSifundo esitsha</string>
+    <string name="label_module_name">Igama le-Module *</string>
+    <string name="hint_module_name">umz., 1. Iziseko</string>
+    <string name="label_lesson_title">Isihloko seSifundo *</string>
+    <string name="hint_lesson_title">umz., HTML Structure</string>
+    <string name="label_lesson_type">Uhlobo lweSifundo *</string>
+    <string name="label_duration">Ubude bexesha (beevidiyo)</string>
+    <string name="hint_duration">umz., 10:24</string>
+    <string name="label_upload_content">Layisha uMxholo *</string>
+    <string name="hint_upload_content">Cofa ukuze ulayishe ividiyo okanye uxwebhu</string>
+    <string name="hint_upload_formats">MP4, PDF, DOCX • Ubuninzi obuyi-500MB</string>
+    <string name="label_link_doc">Qhagamshela uXwebhu oluzikhethelayo</string>
+    <string name="hint_select_resource">Khetha i-PDF okanye isiBonelelo</string>
+    <string name="label_has_quiz">Bandakanya i-Ending Quiz</string>
+    <string name="btn_add_lesson">Yongeza iSifundo</string>
+
+    <!-- Post Project -->
+    <string name="title_post_project">Thumela iProjekthi yakho</string>
+    <string name="subtitle_post_project">ⓘ Yabelana ngeprojekthi yakho noluntu</string>
+    <string name="label_project_title">Isihloko seProjekthi *</string>
+    <string name="hint_project_title">umz., AI-Powered Recommendation System</string>
+    <string name="label_related_course">IKhosi enxulumene nayo *</string>
+    <string name="label_project_type">Uhlobo lweProjekthi</string>
+    <string name="label_project_description">Inkcazelo yeProjekthi *</string>
+    <string name="hint_project_description">Chaza iprojekthi yakho...</string>
+    <string name="label_github_repo">Indawo yokugcina i-GitHub</string>
+    <string name="hint_github_repo">https://github.com/username/repo</string>
+    <string name="label_project_files">Iifayile zeProjekthi</string>
+    <string name="hint_attach_zip">Cofa ukuze uqhoboshele iifayile yeprojekthi (ZIP)</string>
+    <string name="btn_post_project">Thumela iProjekthi</string>
+    <string name="btn_message_instructor">Thumela umyalezo kumhlohli</string>
+    <string name="label_add_video">Yongeza iVidiyo *</string>
+    <string name="label_add_doc">Yongeza uXwebhu oluzikhethelayo</string>
+    <string name="hint_upload_video">Cofa ukuze ulayishe ividiyo</string>
+    <string name="hint_upload_doc">Cofa ukuze ulayishe i-PDF okanye i-DOCX</string>
+    <string name="btn_preview_project">Jonga kwangaphambili iProjekthi</string>
+
+    <!-- Competition -->
+    <string name="competition_prize">Ibhaso: R4,000</string>
+    <string name="title_competition">UKhuphiswano lwe-Student Dev</string>
+    <string name="subtitle_competition">Yakha into emangalisayo!</string>
+    <string name="btn_submit_entry">Ngenisa i-Entry</string>
+    <string name="title_rules">Imithetho</string>
+    <string name="competition_rules">• Sebenzisa ubuncinci isakhelo/ilayibrari enye\n• Layisha ividiyo engaphantsi kwemizuzu emi-2\n• Ngenisa ikhonkco lakho le-GitHub\n• Igwetywe ngokungafaniyo kunye nokuPhunyezwa</string>
+    <string name="title_leaderboard">Ibhodi yeBakala yaKwangoku</string>
+    <string name="competition_no_entries">Akukho zingeniso zingenisiweyo okwangoku — yiba ngowokuqala!</string>
+
+    <!-- Dynamic Strings -->
+    <string name="welcome_back_format">Wamkelekile kwakhona, %1$s! %2$s</string>
+    <string name="downloading_video">Ikhuphela ividiyo</string>
+    <string name="download_progress_format">Inkqubela: %d%%</string>
+    <string name="compression_done">Uxinzelelo lugqityiwe</string>
+    <string name="compression_ready_format">i-%s ilungile</string>
+    <string name="compressing_format">Ixinezela i-%s</string>
+    <string name="course_meta_format">%1$s • %2$s</string>
+    <string name="completion_format">%d%% Igqityiwe</string>
+    <string name="students_count_format">abaFundi abayi-%d</string>
+    <string name="completion_rate_format">%d%% yeBakala loGqibo</string>
+    <string name="progress_format">%d%% yeNkqubela</string>
+    <string name="submitted_date_format">Iingenisiwe: %s</string>
+    <string name="message_to_student_format">Umyalezo oya ku-%s</string>
+    <string name="module_items_format">%1$s (%2$d %3$s)</string>
+    <string name="item_singular">Into</string>
+    <string name="item_plural">Izinto</string>
+    <string name="title_code_format">%1$s - %2$s</string>
+    <string name="title_student_format">%1$s - %2$s</string>
+    <string name="rating_count_format">(%d)</string>
+    <string name="leaderboard_row_format">%1$s %2$s - %3$s</string>
+    <string name="unassigned">Ayabelwanga</string>
+    <string name="tba">TBA</string>
+    <string name="struggling">Izama</string>
+    <string name="active">Iyasebenza</string>
+    <string name="admin_default_name">uMlawuli</string>
+    <string name="instructor_default_name">uMhlohli</string>
+    <string name="student_default_name">uMfundi</string>
+
+    <string name="instructor_unassigned">Ayabelwanga</string>
+    <string name="instructor_tba">TBA</string>
+    <string name="label_from_user">Isuka ku: %s</string>
+    <string name="label_lesson">Isifundo: %s</string>
+    <string name="role_administrator">Umlawuli</string>
+    <string name="stat_courses">Izifundo</string>
+    <string name="stat_projects">Iiprojekthi</string>
+    <string name="stat_users">Abasebenzisi</string>
+    <string name="member_since_format">Ilungu ukususela ngo-%s</string>
+    <string name="msg_course_approved">Isifundo sivunyiwe</string>
+    <string name="msg_course_rejected">Isifundo saliwe</string>
+    <string name="msg_lesson_comments">Izimvo zesifundo: %d</string>
+    <string name="msg_no_video_source">Akukho mthombo wevidiyo ukhoyo</string>
+    <string name="title_edit_user">Hlela uMsebenzisi</string>
+    <string name="msg_project_approved">Iprojekthi ivunyiwe</string>
+    <string name="msg_project_rejected">Iprojekthi aliwe</string>
+    <string name="msg_account_created_login">I-akhawunti idaliwe! Nceda ungene.</string>
+    <string name="msg_profile_updated_login">Iprofayile ihlaziyiwe! Nceda ungene.</string>
+    <string name="msg_account_exists_login">I-akhawunti sele ikhona. Nceda ungene.</string>
+    <string name="msg_welcome_back_continue">Wamkelekile kwakhona! Nceda uqhubeke kwisikrini sokungena.</string>
+    <string name="title_message_user">Thumela umyalezo ku-%s</string>
+    <string name="msg_message_sent">Umyalezo uthunyelwe!</string>
+    <string name="msg_course_submitted_approval">Isifundo sithunyelwe ukuze sivunywe nguMlawuli!</string>
+    <string name="msg_student_questions">Imibuzo yabaFundi: %d</string>
+    <string name="stat_hours">Iiyure</string>
+    <string name="msg_course_created_add_lessons">Isifundo sidaliwe! Ngoku yongeza izifundo.</string>
+    <string name="label_doc_selected">Uxwebhu olukhethiweyo: %s</string>
+    <string name="label_file_selected">Ikhethiwe: %s</string>
+    <string name="error_fill_fields_upload">Nceda uzalise yonke imimandla efunekayo kwaye ulayishe umxholo.</string>
+    <string name="msg_lesson_added">Isifundo songezwe ngempumelelo!</string>
+    <string name="msg_no_preview_available">Akukho mboniso ukhoyo kule projekthi.</string>
+    <string name="title_preview_project">Umboniso: %s</string>
+    <string name="msg_pwd_reset_sent">I-imeyile yokusetha kabusha igama eligqithisiweyo ithunyelwe ku-%s</string>
+    <string name="msg_pwd_reset_failed">Ayiphumelelanga ukuthumela i-imeyile yokusetha kabusha.</string>
+    <string name="msg_no_auth_user">Akukho msebenzisi oqinisekisiweyo ofunyenweyo.</string>
+    <string name="msg_opening_privacy">Ivula umgaqo-nkqubo wabucala...</string>
+    <string name="msg_account_deleted">I-akhawunti icinywe ngempumelelo.</string>
+    <string name="msg_auth_required_delete">Uqinisekiso luyadingeka. Nceda ungene kwakhona ukuze ucime i-akhawunti yakho.</string>
+    <string name="msg_project_submitted_review">Iprojekthi ithunyelwe ukuba ihlolwe!</string>
+    <string name="msg_notes_saved">Amanqaku agciniwe</string>
+    <string name="msg_enrolled_in_course">Ubhalise ku-%s!</string>
+    <string name="msg_no_lessons_available">Akukho zifundo zikhoyo okwangoku</string>
+    <string name="msg_feedback_sent_instructor">⚠️ Ingxelo ithunyelwe kumhlohli</string>
+    <string name="btn_downloaded">✅ Ikhutshelwe</string>
+    <string name="msg_download_started">Ukhuphelo luqaliswe ngasemva</string>
+    <string name="msg_video_rated">Ividiyo ilinganisiwe: %d iinkwenkwezi</string>
+    <string name="error_file_not_found">Ifayile ayifumaneki.</string>
+    <string name="error_no_app_for_file">Akukho sicelo sifunyenweyo sokuvula le fayile.</string>
+    <string name="error_invalid_link">Ikhonkco elingasebenziyo.</string>
+    <string name="title_milestone">Ifikelele kwinqanaba elibalulekileyo!</string>
+    <string name="msg_milestone_50">Sivuyisana nawe! Ugqibe i-50% yale khosi. Qhubeka!</string>
+    <string name="btn_cancel">Rhoxisa</string>
+    <string name="btn_ok">Kulungile</string>
+    <string name="btn_later">Kamva</string>
+
+    <string name="label_new_password">Iphasiwedi Entsha</string>
+    <string name="hint_new_password">Faka iphasiwedi entsha</string>
+    <string name="label_confirm_password">Qinisekisa Iphasiwedi</string>
+    <string name="hint_confirm_password">Phinda ufake iphasiwedi entsha</string>
+    <string name="btn_update_password">Hlaziya Iphasiwedi</string>
+    <string name="msg_password_mismatch">Iiphasiwedi azifani.</string>
+    <string name="msg_password_short">Iphasiwedi kufuneka ibe nobuncinci bamaqhosha ama-6.</string>
+    <string name="msg_password_updated">Iphasiwedi ihlaziywe ngempumelelo.</string>
+    <string name="msg_password_update_fail">Ayiphumelelanga ukuhlaziya iphasiwedi. Kusenokufuneka ungene kwakhona.</string>
+
+    <!-- New Strings -->
+    <string name="title_message_student">Umyalezo oya kumfundi</string>
+    <string name="btn_send">Thumela</string>
+    <string name="title_rate_project">Hlela le projekthi</string>
+    <string name="subtitle_rate_project">Khetha iinkwenkwezi kunye nebheji ozikhethelayo kule projekthi.</string>
+    <string name="label_award_badge">Wonga iBheji (Ngokuzikhethela)</string>
+    <string name="badge_none">Akukho Bheji</string>
+    <string name="badge_unique">Iyingqayizivele</string>
+    <string name="badge_complex">Intsonkothile</string>
+    <string name="badge_excellent">Egqwesileyo</string>
+    <string name="btn_submit">Ngenisa</string>
+    <string name="title_congratulations">Sivuyisana nawe!</string>
+    <string name="msg_rate_experience">Ugqibe i-50%% yale khosi! Nceda ulinganise amava akho.</string>
+    <string name="title_content_management">Ulawulo loMxholo weKhosi</string>
+    <string name="btn_upload_full_course">Layisha iKhosi ezeleyo</string>
+    <string name="empty_lessons_instructor">Akukho zifundo okwamanje. Cofa ku \"Yongeza iSifundo\" ukuze udale eyakho yokuqala.</string>
+    <string name="title_course_review">Uphengululo lweKhosi</string>
+    <string name="subtitle_course_review">Khetha isifundo oza kusibona kwangaphambili</string>
+    <string name="btn_reject">Khaba</string>
+    <string name="btn_approve">Vuma</string>
+    <string name="title_interactions">Unxibelelwano lwabaFundi</string>
+    <string name="subtitle_interactions">Izimvo kunye neengxelo zoMxholo odidayo kuzo zonke iikhosi zakho</string>
+    <string name="empty_interactions">Akukho nxibelelwano lufunyenweyo</string>
+    <string name="tab_all">Konke</string>
+    <string name="tab_published">Papashwe</string>
+    <string name="tab_pending">Isalindile</string>
+    <string name="hint_search_users">Khangela abasebenzisi...</string>
+    <string name="title_messages">Imiyalezo yam</string>
+    <string name="empty_messages">Akukho miyalezo okwamanje</string>
+    <string name="title_my_courses">Iikhosi zam</string>
+    <string name="btn_new_course">+ Dala iKhosi eNtsha</string>
+    <string name="title_my_projects">Iiprojekthi zam</string>
+    <string name="btn_new_project">+ Iprojekthi entsha</string>
+    <string name="empty_projects">Awukazipapashi naziphi na iiprojekthi okwamanje.</string>
+    <string name="title_my_students">Abafundi bam</string>
+    <string name="empty_students">Akukho bafundi babhalise kwiikhosi zakho okwamanje.</string>
+    <string name="hint_search_students">Khangela abafundi...</string>
+    <string name="title_notifications">Izaziso</string>
+    <string name="empty_notifications">Akukho zaziso zintsha</string>
+    <string name="title_pending_approvals">Ukuvunywa okulindileyo</string>
+    <string name="label_pending_courses">IIKHOSI EZILINDE UKUVUNYWA</string>
+    <string name="empty_pending_courses">Akukho zikhosi zilinde ukuvunywa.</string>
+    <string name="label_pending_projects">IIPROJEKTHI EZILINDE UKUVUNYWA</string>
+    <string name="empty_pending_projects">Akukho ziprojekthi zilinde ukuvunywa.</string>
+    <string name="btn_logout">Phuma</string>
+    <string name="label_student_name">Igama loMfundi</string>
+    <string name="label_project_links">Amakhonkco eProjekthi</string>
+    <string name="btn_open_github">Vula indawo yokugcina i-GitHub</string>
+    <string name="title_saved_references">Iimbekiselo zam ezigciniweyo</string>
+    <string name="subtitle_references">Izifundo ozibekele uphawu ukuze uzifunde kamva</string>
+    <string name="empty_references">Akukho mbekiselo zigciniweyo okwamanje.\nBeka uphawu kwizifundo kwi-Video Learning.</string>
+    <string name="title_showcase">Hlola uMboniso</string>
+    <string name="subtitle_showcase">Fumanisa iiprojekthi ezimangalisayo ezisuka kubafundi osebenza nabo</string>
+    <string name="hint_search_courses">Khangela iikhosi zakho...</string>
+    <string name="title_student_projects">Iiprojekthi zabaFundi</string>
+    <string name="label_published_courses">Iikhosi eziPapashiweyo</string>
+    <string name="btn_chat_student">Ncokola noMfundi</string>
+    <string name="label_personal_notes">Amanqaku obuqu:</string>
+    <string name="hint_add_notes">Yongeza amanqaku apha...</string>
+    <string name="btn_rate_project">Hlela iProjekthi</string>
+    <string name="hint_type_message">Chwetheza umyalezo wakho apha...</string>
+    <string name="msg_confirm_delete_account">Uqinisekile ukuba ufuna ukucima i-akhawunti yakho? Esi senzo asinakurhoxiswa. </string>
+    <string name="btn_delete">Cima</string>
+    <string name="error_google_sign_in">Ukungena kwe-Google akuphumelelanga: %s</string>
+    <string name="error_email_taken">I-akhawunti enale imeyile sele ikhona.</string>
+    <string name="error_email_exists_diff_pwd">Le imeyile sele ibhalisiwe ngephasiwedi eyahlukileyo.</string>
+    <string name="error_create_account_failed">Ayiphumelelanga ukudala i-akhawunti.</string>
+    <string name="error_google_sign_in_generic">Ukungena kwe-Google akuphumelelanga.</string>
+
+    <string name="nav_dashboard">I-Dashboard</string>
+    <string name="nav_users">Abasebenzisi</string>
+    <string name="nav_courses">Izifundo</string>
+    <string name="nav_pending">Okusalindile</string>
+    <string name="nav_home">Ikhaya</string>
+    <string name="nav_learn">Funda</string>
+    <string name="nav_projects">Iiprojekthi</string>
+    <string name="nav_students">Abafundi</string>
+    <string name="menu_admin_profile">Iprofayile yoMlawuli</string>
+    <string name="menu_student_profile">Iprofayile yoMfundi</string>
+    <string name="menu_instructor_profile">Iprofayile yoMhlohli</string>
+    <string name="menu_logout">Phuma</string>
+    <string name="menu_showcase">Umboniso</string>
+    <string name="menu_competition">UKhuphiswano</string>
+    <string name="menu_messages">Imiyalezo</string>
+    <string name="menu_downloads">Izinto Ezikhutshelweyo Zam</string>
+    <string name="menu_post_project">Thumela iProjekthi</string>
+    <string name="menu_post_course">Thumela iKhosi</string>
+    <string name="menu_interactions">Unxibelelwano lwabaFundi</string>
+    <string name="menu_insights">Uluvo LabaPhuhlisi AbaPhezulu</string>
+
+    <string name="msg_downloading">Ikhuphela ividiyo</string>
+    <string name="msg_starting_download">Iqalisa ukhuphelo...</string>
+    <string name="msg_download_complete">Ukhuphelo lugqityiwe</string>
+    <string name="msg_video_saved_offline">IVidiyo igcinelwe ukusetyenziswa ngaphandle kwe-intanethi</string>
+    <string name="msg_download_failed">Ukhuphelo aluphumelelanga</string>
+    <string name="msg_unknown_error">Impazamo engaziwayo</string>
+    <string name="msg_processing_video">Iqhuba ividiyo yakho...</string>
+    <string name="msg_compression_failed">Uxinzelelo aluphumelelanga</string>
+    <string name="msg_processing_progress">Iyaqhuba: %d%%</string>
+    <string name="label_btn_save">Gcina</string>
+    <string name="hint_full_name">Igama elizeleyo</string>
+    <string name="hint_university">Iyunivesithi</string>
+    <string name="label_instructor">Umhlohli</string>
+    <string name="label_course">Ikhosi</string>
+
+    <string name="channel_downloads_name">Ukhuphelo lweVidiyo</string>
+    <string name="channel_downloads_desc">Izaziso zobume bokukhutshelwa kwevidiyo</string>
+    <string name="channel_compression_name">Uxinzelelo lweVidiyo</string>
+    <string name="channel_compression_desc">Izaziso zobume boxinzelelo lwevidiyo</string>
+    <string name="channel_general_name">Izaziso Jikelele</string>
+    <string name="channel_messages_name">Imiyalezo</string>
+
+    <!-- MainActivity Titles -->
+    <string name="title_admin_panel">Iphaneli yoMlawuli</string>
+    <string name="title_instructor_portal">I-portal yoMhlohli</string>
+    <string name="title_student_dashboard">I-dashboard yoMfundi</string>
+
+    <!-- Auth Errors -->
+    <string name="error_enter_email_password">Nceda ufake zombini i-imeyili negama lokungena.</string>
+    <string name="error_failed_attempts">Imizamo emininzi engaphumelelanga. Ukuba umtsha, nceda usebenzise u-Dala i-Akhawunti.</string>
+    <string name="error_incorrect_credentials">I-imeyili okanye igama lokungena elingachanekanga.</string>
+    <string name="error_account_suspended">Le akhawunti imisiwe. Nxibelelana nomlawuli.</string>
+
+    <!-- Roles -->
+    <string name="role_student">Umfundi</string>
+    <string name="role_instructor">Umhlohli</string>
+    <string name="role_admin">Umlawuli</string>
+
+    <!-- Tabs -->
+    <string name="tab_in_progress">Iyaqhutywa</string>
+    <string name="tab_completed">Igqityiwe</string>
+    <string name="tab_saved">Igciniwe</string>
+    <string name="tab_approved">Igunyazisiwe</string>
+    <string name="tab_pending_review">Isalindele uPhononongo</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_course_title">Isihloko seKhosi</string>
+    <string name="placeholder_course_meta">i-Meta yeKhosi</string>
+    <string name="placeholder_completion">Ugqibo</string>
+    <string name="placeholder_user_initials">UI</string>
+    <string name="placeholder_user_name">Igama loMsebenzisi</string>
+    <string name="placeholder_date">2024-01-01</string>
+    <string name="placeholder_time">10:00 AM</string>
+    <string name="placeholder_chat_received">Ibhola yomyalezo ofunyenweyo</string>
+    <string name="placeholder_chat_sent">Ibhola yomyalezo othunyelweyo</string>
+
+    <string name="btn_edit">Hlela</string>
+    <string name="btn_suspend">Misa</string>
+    <string name="label_project_video">Ividiyo yeProjekthi</string>
+    <string name="label_video_selected">IVidiyo: %s</string>
+    <string name="label_comment">ULUVO</string>
+    <string name="placeholder_comment_text">Olu luluvo okanye umbuzo malunga nesifundo.</string>
+    <string name="placeholder_university">Igama leYunivesithi</string>
+
+    <!-- Additional UI Strings -->
+    <string name="notification_new_enrollment">Ubhaliso Olutsha</string>
+    <string name="notification_new_message">Umyalezo Omtsha</string>
+    <string name="status_active_label">Iyasebenza</string>
+    <string name="status_suspended_label">Imisiwe</string>
+    <string name="btn_reactivate">Vula kwakhona</string>
+    <string name="hint_search">Khangela...</string>
+    <string name="msg_enrolled_joined_format">U-%1$s ujoyine i-%2$s</string>
+    <string name="msg_sent_you_message_format">U-%1$s ukuthumelele umyalezo.</string>
+    <string name="msg_course_live_format">Isifundo sakho esithi \'%s\' sesiyasebenza ngoku.</string>
+    <string name="msg_course_rejected_format">Isifundo sakho esithi \'%s\' saliwe.</string>
+    <string name="msg_project_approved_showcase_format">Iprojekthi yakho ethi \'%s\' ivunyelwe ku-Showcase!</string>
+    <string name="msg_project_rejected_format">Iprojekthi yakho ethi \'%s\' aliwe.</string>
+    <string name="option_none_project">Hayi / Iprojekthi yoMntu</string>
+    <string name="hint_project_comment">Shiya uluvo ngale projekthi...</string>
+    <string name="msg_waiting_internet">Ilinde uxhulumaniso lwe-intanethi...</string>
+</resources>
+
+
+
+

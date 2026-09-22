@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCourse Hub</string>
+    <string name="app_tagline">Leer, Deel, Groei</string>
+
+    <!-- Login -->
+    <string name="login_welcome_back">Welkom Terug</string>
+    <string name="login_subtitle">Meld aan om voort te gaan met leer</string>
+    <string name="login_email_label">E-pos</string>
+    <string name="login_email_hint">jy@university.edu</string>
+    <string name="login_password_label">Wagwoord</string>
+    <string name="login_password_hint">••••••••</string>
+    <string name="login_btn_text">Teken in</string>
+    <string name="login_or_divider">OF</string>
+    <string name="login_google_sign_in">Gaan voort met Google</string>
+    <string name="login_no_account">Het jy nie \'n rekening nie? </string>
+    <string name="login_create_account">Skep Rekening</string>
+    <string name="login_footer_note">Nuut hier? Registreer met e-pos, of gaan voort met Google — jy sal jou rol (Student / Instrukteur / Admin) direk daarna kies.</string>
+    <string name="desc_app_logo">Toepassing-logo</string>
+
+    <!-- Register -->
+    <string name="register_title">Skep Rekening</string>
+    <string name="register_subtitle">Sluit aan by die leergemeenskap</string>
+    <string name="register_full_name_label">Volle Naam *</string>
+    <string name="register_full_name_hint">Voer jou volle naam in</string>
+    <string name="register_email_label">E-pos *</string>
+    <string name="register_email_hint">Voer jou e-pos in</string>
+    <string name="register_university_label">Universiteit *</string>
+    <string name="register_university_hint">Voer jou universiteit in</string>
+    <string name="register_student_id_label">Student / Personeel ID *</string>
+    <string name="register_student_id_hint">Voer jou student-ID in</string>
+    <string name="register_password_label">Wagwoord *</string>
+    <string name="register_password_hint">Skep \'n wagwoord (min 6 karakters)</string>
+    <string name="register_password_note">Gebruik 6+ karakters, mengsel van hoofletters, kleinletters, syfers en simbole</string>
+    <string name="register_confirm_password_label">Bevestig Wagwoord *</string>
+    <string name="register_confirm_password_hint">Bevestig jou wagwoord</string>
+    <string name="register_role_label">Rol *</string>
+    <string name="register_btn_text">Skep Rekening</string>
+    <string name="register_google_sign_up">Registreer met Google</string>
+    <string name="register_already_have_account">Het jy reeds \'n rekening? </string>
+    <string name="desc_back_button">Terug</string>
+
+    <!-- Complete Profile -->
+    <string name="cp_title">Een Laaste Stap</string>
+    <string name="cp_subtitle">Vertel ons \'n bietjie van jouself om jou rekening klaar op te stel</string>
+    <string name="cp_btn_continue">Gaan voort</string>
+    <string name="cp_already_have_account">Het jy reeds \'n rekening? Meld aan</string>
+    <string name="cp_new_here_register">Nuut hier? Skep Rekening</string>
+
+    <!-- Video Learning -->
+    <string name="video_completion_format">%d%% Voltooi</string>
+
+    <!-- Post Course -->
+    <string name="error_fill_fields">Vul asseblief alle vereiste velde in.</string>
+
+    <!-- Admin Dashboard -->
+    <string name="admin_welcome">Welkom terug, Admin!</string>
+    <string name="admin_subtitle">Platformoorsig en bestuur</string>
+    <string name="admin_total_users">Totale Gebruikers</string>
+    <string name="admin_total_courses">Totale Kursusse</string>
+    <string name="admin_pending_approvals">Hangende Goedkeurings</string>
+    <string name="admin_manage_users">Bestuur Gebruikers</string>
+    <string name="admin_manage_users_desc">Bekyk en bestuur alle gebruikers</string>
+    <string name="admin_manage_courses">Bestuur Kursusse</string>
+    <string name="admin_manage_courses_desc">Keur kursusse goed en modereer dit</string>
+    <string name="admin_manage_projects">Bestuur Projekte</string>
+    <string name="admin_manage_projects_desc">Hersien studente-projekte</string>
+    <string name="admin_pending_desc">Kursusse en projekte om te hersien</string>
+    <string name="desc_dashboard_icon">Dashboard-ikoon</string>
+    <string name="zero">0</string>
+    <string name="register_already_have_account_login">Het jy reeds \'n rekening? Meld aan</string>
+    <string name="menu_references">Gestoorde Verwysings</string>
+    <string name="menu_settings">Instellings</string>
+    <string name="settings_title">Toepassingsinstellings</string>
+    <string name="settings_appearance">Voorkoms</string>
+    <string name="settings_dark_mode">Donker Modus</string>
+    <string name="settings_language">Taal</string>
+    <string name="settings_account">Rekening en Sekuriteit</string>
+    <string name="settings_change_password">Verander Wagwoord</string>
+    <string name="settings_privacy">Privaatheidsbeleid</string>
+    <string name="settings_delete">Skrap Rekening</string>
+    <string name="settings_version">UniCourse Hub v1.0</string>
+
+    <!-- Downloads -->
+    <string name="title_downloads">My Aflaaisels</string>
+    <string name="subtitle_downloads">Toegang tot jou afgelaaide lesse vanlyn</string>
+    <string name="empty_downloads">Nog geen aflaaisels nie.\nLaai lesse af in Video-leer om hulle hier te sien.</string>
+
+    <!-- Dashboard Titles -->
+    <string name="dashboard_title">Dashboard</string>
+
+    <!-- Student Dashboard -->
+    <string name="student_dashboard_welcome">Welkom terug!</string>
+    <string name="student_dashboard_subtitle">Jou leerreis gaan voort</string>
+    <string name="stat_enrolled_courses">Ingeskrewe Kursusse</string>
+    <string name="stat_my_projects">My Projekte</string>
+    <string name="stat_hours_learned">Ure Geleer</string>
+    <string name="section_continue_learning">Gaan voort met Leer</string>
+    <string name="student_dashboard_empty_state">Jy is nog nie vir enige kursusse ingeskryf nie. Gaan na die Kursusse-oortjie om te begin!</string>
+
+    <!-- Instructor Dashboard -->
+    <string name="instructor_dashboard_welcome">Welkom terug!</string>
+    <string name="instructor_dashboard_subtitle">Bestuur jou kursusse en studente</string>
+    <string name="stat_my_courses">My Kursusse</string>
+    <string name="stat_students">Studente</string>
+    <string name="stat_pending_reviews">Hangende Hersienings</string>
+    <string name="section_course_overview">Kursusoorsig</string>
+    <string name="section_recent_submissions">Onlangse Studente-indienings</string>
+
+    <!-- Video Learning -->
+    <string name="video_insights_header">💡 Senior Ontwikkelaar Insigte</string>
+    <string name="video_insights_default">Skoon kode is leesbare kode.</string>
+    <string name="video_default_course_title">Full Stack Web Dev</string>
+    <string name="video_rating_format">%.1f Gradering</string>
+    <string name="video_select_lesson">Kies \'n les hieronder</string>
+    <string name="btn_confusing">⚠️ Verwarrend</string>
+    <string name="btn_download">⬇️ Aflaai</string>
+    <string name="btn_save">🔖 Stoor</string>
+    <string name="video_rate_label">Gradeer hierdie video:</string>
+    <string name="btn_view_doc">📄 Bekyk Dokument</string>
+    <string name="btn_take_quiz">📝 Doen Vasvra</string>
+    <string name="btn_ask_question">Plaas \'n vraag of opmerking</string>
+    <string name="msg_comment_success">Opmerking suksesvol geplaas! Jou instrukteur sal in kennis gestel word.</string>
+    <string name="section_comments">Opmerkings en Vrae</string>
+    <string name="hint_ask_question">Vra \'n vraag...</string>
+    <string name="btn_post">Plaas</string>
+    <string name="video_no_course_state">Skryf in vir \'n kursus vanaf die Kursusse-oortjie om te begin leer!</string>
+
+    <!-- Post Course -->
+    <string name="title_create_course">Skep Nuwe Kursus</string>
+    <string name="subtitle_create_course">ⓘ Skep \'n nuwe kursus vir jou studente</string>
+    <string name="label_course_title">Kursustitel *</string>
+    <string name="hint_course_title">bv., Gevorderde Webontwikkeling</string>
+    <string name="label_course_code">Kursuskode *</string>
+    <string name="hint_course_code">bv., CS 501</string>
+    <string name="label_category">Kategorie *</string>
+    <string name="label_semester">Semester *</string>
+    <string name="label_course_description">Kursusbeskrywing *</string>
+    <string name="hint_course_description">Beskryf jou kursus...</string>
+    <string name="btn_create_course">Skep Kursus</string>
+
+    <!-- Post Lesson -->
+    <string name="title_add_lesson">Voeg Nuwe Les by</string>
+    <string name="label_module_name">Modulenaam *</string>
+    <string name="hint_module_name">bv., 1. Grondbeginsels</string>
+    <string name="label_lesson_title">Lestitel *</string>
+    <string name="hint_lesson_title">bv., HTML-struktuur</string>
+    <string name="label_lesson_type">Lestipe *</string>
+    <string name="label_duration">Tydsduur (vir video\'s)</string>
+    <string name="hint_duration">bv., 10:24</string>
+    <string name="label_upload_content">Laai inhoud op *</string>
+    <string name="hint_upload_content">Tik om video of dokument op te laai</string>
+    <string name="hint_upload_formats">MP4, PDF, DOCX • Maks 500MB</string>
+    <string name="label_link_doc">Koppel opsionele dokument</string>
+    <string name="hint_select_resource">Kies PDF of hulpbron</string>
+    <string name="label_has_quiz">Sluit eindvasvra in</string>
+    <string name="btn_add_lesson">Voeg Les by</string>
+
+    <!-- Post Project -->
+    <string name="title_post_project">Plaas jou Projek</string>
+    <string name="subtitle_post_project">ⓘ Deel jou projek met die gemeenskap</string>
+    <string name="label_project_title">Projektitel *</string>
+    <string name="hint_project_title">bv., KI-aangedrewe aanbevelingstelsel</string>
+    <string name="label_related_course">Verwante Kursus *</string>
+    <string name="label_project_type">Projektipe</string>
+    <string name="label_project_description">Projekbeskrywing *</string>
+    <string name="hint_project_description">Beskryf jou projek...</string>
+    <string name="label_github_repo">GitHub-bewaarplek</string>
+    <string name="hint_github_repo">https://github.com/gebruikersnaam/repo</string>
+    <string name="label_project_files">Projeklêers</string>
+    <string name="hint_attach_zip">Tik om projeklêers aan te heg (ZIP)</string>
+    <string name="btn_post_project">Plaas Projek</string>
+    <string name="btn_message_instructor">Stuur boodskap aan instrukteur</string>
+    <string name="label_add_video">Voeg video by *</string>
+    <string name="label_add_doc">Voeg opsionele dokument by</string>
+    <string name="hint_upload_video">Tik om video op te laai</string>
+    <string name="hint_upload_doc">Tik om PDF of DOCX op te laai</string>
+    <string name="btn_preview_project">Voorskou Projek</string>
+
+    <!-- Competition -->
+    <string name="competition_prize">Prys: R4,000</string>
+    <string name="title_competition">Student-ontwikkelaarkompetisie</string>
+    <string name="subtitle_competition">Bou iets ongeloofliks!</string>
+    <string name="btn_submit_entry">Dien inskrywing in</string>
+    <string name="title_rules">Reëls</string>
+    <string name="competition_rules">• Gebruik ten minste een raamwerk/biblioteek\n• Laai \'n video van minder as 2 minute op\n• Dien jou GitHub-skakel in\n• Beoordeel op Uniekheid en Uitvoering</string>
+    <string name="title_leaderboard">Huidige Ranglys</string>
+    <string name="competition_no_entries">Nog geen inskrywings ingedien nie — wees die eerste!</string>
+
+    <!-- Dynamic Strings -->
+    <string name="welcome_back_format">Welkom terug, %1$s! %2$s</string>
+    <string name="downloading_video">Laai video af</string>
+    <string name="download_progress_format">Vordering: %d%%</string>
+    <string name="compression_done">Kompressie Klaar</string>
+    <string name="compression_ready_format">%s is gereed</string>
+    <string name="compressing_format">Besig met kompressie van %s</string>
+    <string name="course_meta_format">%1$s • %2$s</string>
+    <string name="completion_format">%d%% Voltooi</string>
+    <string name="students_count_format">%d Studente</string>
+    <string name="completion_rate_format">%d%% Voltooiingsyfer</string>
+    <string name="progress_format">%d%% Vordering</string>
+    <string name="submitted_date_format">Ingedien: %s</string>
+    <string name="message_to_student_format">Boodskap aan %s</string>
+    <string name="module_items_format">%1$s (%2$d %3$s)</string>
+    <string name="item_singular">Item</string>
+    <string name="item_plural">Items</string>
+    <string name="title_code_format">%1$s - %2$s</string>
+    <string name="title_student_format">%1$s - %2$s</string>
+    <string name="rating_count_format">(%d)</string>
+    <string name="leaderboard_row_format">%1$s %2$s - %3$s</string>
+    <string name="unassigned">Onassigned</string>
+    <string name="tba">TBA</string>
+    <string name="struggling">Sukkelend</string>
+    <string name="active">Aktief</string>
+    <string name="admin_default_name">Admin</string>
+    <string name="instructor_default_name">Instrukteur</string>
+    <string name="student_default_name">Student</string>
+
+    <string name="instructor_unassigned">Onassigned</string>
+    <string name="instructor_tba">TBA</string>
+    <string name="label_from_user">Van: %s</string>
+    <string name="label_lesson">Les: %s</string>
+    <string name="role_administrator">Administrateur</string>
+    <string name="stat_courses">Kursusse</string>
+    <string name="stat_projects">Projekte</string>
+    <string name="stat_users">Gebruikers</string>
+    <string name="member_since_format">Lid sedert %s</string>
+    <string name="msg_course_approved">Kursus Goedgekeur</string>
+    <string name="msg_course_rejected">Kursus Verwerp</string>
+    <string name="msg_lesson_comments">Les kommentaar: %d</string>
+    <string name="msg_no_video_source">Geen videobron beskikbaar nie</string>
+    <string name="title_edit_user">Wysig Gebruiker</string>
+    <string name="msg_project_approved">Projek Goedgekeur</string>
+    <string name="msg_project_rejected">Projek Verwerp</string>
+    <string name="msg_account_created_login">Rekening geskep! Teken asseblief in.</string>
+    <string name="msg_profile_updated_login">Profiel opgedateer! Teken asseblief in.</string>
+    <string name="msg_account_exists_login">Rekening bestaan reeds. Teken asseblief in.</string>
+    <string name="msg_welcome_back_continue">Welkom terug! Gaan asseblief voort vanaf die aanmeldskerm.</string>
+    <string name="title_message_user">Stuur boodskap aan %s</string>
+    <string name="msg_message_sent">Boodskap gestuur!</string>
+    <string name="msg_course_submitted_approval">Kursus ingedien vir Admin goedkeuring!</string>
+    <string name="msg_student_questions">Studentevrae: %d</string>
+    <string name="stat_hours">Ure</string>
+    <string name="msg_course_created_add_lessons">Kursus geskep! Voeg nou lesse by.</string>
+    <string name="label_doc_selected">Dokument gekies: %s</string>
+    <string name="label_file_selected">Gekies: %s</string>
+    <string name="error_fill_fields_upload">Vul asseblief alle vereiste velde in en laai inhoud op.</string>
+    <string name="msg_lesson_added">Les suksesvol bygevoeg!</string>
+    <string name="msg_no_preview_available">Geen voorskou beskikbaar vir hierdie projek nie.</string>
+    <string name="title_preview_project">Voorskou: %s</string>
+    <string name="msg_pwd_reset_sent">Wagwoordherstel-e-pos gestuur na %s</string>
+    <string name="msg_pwd_reset_failed">Kon nie herstel-e-pos stuur nie.</string>
+    <string name="msg_no_auth_user">Geen geoutentiseerde gebruiker gevind nie.</string>
+    <string name="msg_opening_privacy">Maak privaatheidsbeleid oop...</string>
+    <string name="msg_account_deleted">Rekening suksesvol geskrap.</string>
+    <string name="msg_auth_required_delete">Stawing vereis. Teken asseblief weer in om jou rekening te skrap.</string>
+    <string name="msg_project_submitted_review">Projek ingedien vir hersiening!</string>
+    <string name="msg_notes_saved">Notas gestoor</string>
+    <string name="msg_enrolled_in_course">Ingeskryf vir %s!</string>
+    <string name="msg_no_lessons_available">Nog geen lesse beskikbaar nie</string>
+    <string name="msg_feedback_sent_instructor">⚠️ Terugvoer aan instrukteur gestuur</string>
+    <string name="btn_downloaded">✅ Afgelaai</string>
+    <string name="msg_download_started">Aflaai het in die agtergrond begin</string>
+    <string name="msg_video_rated">Video gegradeer: %d sterre</string>
+    <string name="error_file_not_found">Lêer nie gevind nie.</string>
+    <string name="error_no_app_for_file">Geen toepassing gevind om hierdie lêer oop te maak nie.</string>
+    <string name="error_invalid_link">Ongeldige skakel.</string>
+    <string name="title_milestone">Mylpaal Bereik!</string>
+    <string name="msg_milestone_50">Veels geluk! Jy het 50% van hierdie kursus voltooi. Hou so aan!</string>
+    <string name="btn_cancel">Kanselleer</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_later">Later</string>
+
+    <string name="label_new_password">Nuwe Wagwoord</string>
+    <string name="hint_new_password">Voer nuwe wagwoord in</string>
+    <string name="label_confirm_password">Bevestig Wagwoord</string>
+    <string name="hint_confirm_password">Voer nuwe wagwoord weer in</string>
+    <string name="btn_update_password">Opdateer Wagwoord</string>
+    <string name="msg_password_mismatch">Wagwoorde stem nie ooreen nie.</string>
+    <string name="msg_password_short">Wagwoord moet ten minste 6 karakters lank wees.</string>
+    <string name="msg_password_updated">Wagwoord suksesvol opgedateer.</string>
+    <string name="msg_password_update_fail">Kon nie wagwoord opdateer nie. Jy moet dalk weer aanmeld.</string>
+
+    <!-- New Strings -->
+    <string name="title_message_student">Boodskap aan student</string>
+    <string name="btn_send">Stuur</string>
+    <string name="title_rate_project">Gradeer hierdie projek</string>
+    <string name="subtitle_rate_project">Kies sterre en \'n opsionele kenteken vir hierdie projek.</string>
+    <string name="label_award_badge">Ken \'n kenteken toe (opsioneel)</string>
+    <string name="badge_none">Geen kenteken</string>
+    <string name="badge_unique">Uniek</string>
+    <string name="badge_complex">Kompleks</string>
+    <string name="badge_excellent">Uitstekend</string>
+    <string name="btn_submit">Dien in</string>
+    <string name="title_congratulations">Veels geluk!</string>
+    <string name="msg_rate_experience">Jy het 50%% van hierdie kursus voltooi! Gradeer asseblief jou ervaring.</string>
+    <string name="title_content_management">Kursusinhoudbestuur</string>
+    <string name="btn_upload_full_course">Laai volledige kursus op</string>
+    <string name="empty_lessons_instructor">Nog geen lesse nie. Tik \"Voeg les by\" om jou eerste een te skep.</string>
+    <string name="title_course_review">Kursushersiening</string>
+    <string name="subtitle_course_review">Kies \'n les om te voorskou</string>
+    <string name="btn_reject">Verwerp</string>
+    <string name="btn_approve">Keur goed</string>
+    <string name="title_interactions">Studente-interaksies</string>
+    <string name="subtitle_interactions">Opmerkings en verslae oor verwarrende inhoud oor jou kursusse</string>
+    <string name="empty_interactions">Geen interaksies gevind nie</string>
+    <string name="tab_all">Alles</string>
+    <string name="tab_published">Gepubliseer</string>
+    <string name="tab_pending">Hangende</string>
+    <string name="hint_search_users">Soek gebruikers...</string>
+    <string name="title_messages">My boodskappe</string>
+    <string name="empty_messages">Nog geen boodskappe nie</string>
+    <string name="title_my_courses">My kursusse</string>
+    <string name="btn_new_course">+ Skep nuwe kursus</string>
+    <string name="title_my_projects">My projekte</string>
+    <string name="btn_new_project">+ Nuwe projek</string>
+    <string name="empty_projects">Jy het nog geen projekte geplaas nie.</string>
+    <string name="title_my_students">My studente</string>
+    <string name="empty_students">Nog geen studente by jou kursusse ingeskryf nie.</string>
+    <string name="hint_search_students">Soek studente...</string>
+    <string name="title_notifications">Kennisgewings</string>
+    <string name="empty_notifications">Geen nuwe kennisgewings nie</string>
+    <string name="title_pending_approvals">Hangende goedkeurings</string>
+    <string name="label_pending_courses">KURSUSSE WAT WAG OP GOEDKEURING</string>
+    <string name="empty_pending_courses">Geen kursusse wat wag op goedkeuring nie.</string>
+    <string name="label_pending_projects">PROJEKTE WAT WAG OP GOEDKEURING</string>
+    <string name="empty_pending_projects">Geen projekte wat wag op goedkeuring nie.</string>
+    <string name="btn_logout">Teken uit</string>
+    <string name="label_student_name">Studentenaam</string>
+    <string name="label_project_links">Projekskakels</string>
+    <string name="btn_open_github">Maak GitHub-bewaarplek oop</string>
+    <string name="title_saved_references">My gestoorde verwysings</string>
+    <string name="subtitle_references">Lesse wat jy vir latere studie geboekmerk het</string>
+    <string name="empty_references">Nog geen verwysings gestoor nie.\nBoekmerk lesse in Video-leer.</string>
+    <string name="title_showcase">Verken uitstalvenster</string>
+    <string name="subtitle_showcase">Ontdek ongelooflike projekte van medestudente</string>
+    <string name="hint_search_courses">Soek jou kursusse...</string>
+    <string name="title_student_projects">Studenteprojekte</string>
+    <string name="label_published_courses">Gepubliseerde kursusse</string>
+    <string name="btn_chat_student">Gesels met student</string>
+    <string name="label_personal_notes">Persoonlike notas:</string>
+    <string name="hint_add_notes">Voeg notas hier by...</string>
+    <string name="btn_rate_project">Gradeer projek</string>
+    <string name="hint_type_message">Tik jou boodskap hier...</string>
+    <string name="msg_confirm_delete_account">Is jy seker jy wil jou rekening skrap? Hierdie aksie kan nie ongedaan gemaak word nie.</string>
+    <string name="btn_delete">Skrap</string>
+    <string name="error_google_sign_in">Google-aanmelding het misluk: %s</string>
+    <string name="error_email_taken">\'n Rekening met hierdie e-pos bestaan reeds.</string>
+    <string name="error_email_exists_diff_pwd">Hierdie e-pos is reeds geregistreer met \'n ander wagwoord.</string>
+    <string name="error_create_account_failed">Kon nie rekening skep nie.</string>
+    <string name="error_google_sign_in_generic">Google-aanmelding het misluk.</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_users">Gebruikers</string>
+    <string name="nav_courses">Kursusse</string>
+    <string name="nav_pending">Hangende</string>
+    <string name="nav_home">Tuis</string>
+    <string name="nav_learn">Leer</string>
+    <string name="nav_projects">Projekte</string>
+    <string name="nav_students">Studente</string>
+    <string name="menu_admin_profile">Admin-profiel</string>
+    <string name="menu_student_profile">Studenteprofiel</string>
+    <string name="menu_instructor_profile">Instrukteurprofiel</string>
+    <string name="menu_logout">Teken uit</string>
+    <string name="menu_showcase">Uitstalvenster</string>
+    <string name="menu_competition">Kompetisie</string>
+    <string name="menu_messages">Boodskappe</string>
+    <string name="menu_downloads">My Aflaaisels</string>
+    <string name="menu_post_project">Plaas Projek</string>
+    <string name="menu_post_course">Plaas Kursus</string>
+    <string name="menu_interactions">Studente-interaksies</string>
+    <string name="menu_insights">Senior Ontwikkelaar Inisigte</string>
+
+    <string name="msg_downloading">Laai video af</string>
+    <string name="msg_starting_download">Begin aflaai...</string>
+    <string name="msg_download_complete">Aflaai Klaar</string>
+    <string name="msg_video_saved_offline">Video gestoor vir vanlyn gebruik</string>
+    <string name="msg_download_failed">Aflaai het misluk</string>
+    <string name="msg_unknown_error">Onbekende fout</string>
+    <string name="msg_processing_video">Besig om jou video te verwerk...</string>
+    <string name="msg_compression_failed">Kompressie het misluk</string>
+    <string name="msg_processing_progress">Verwerk tans: %d%%</string>
+    <string name="label_btn_save">Stoor</string>
+    <string name="hint_full_name">Volle naam</string>
+    <string name="hint_university">Universiteit</string>
+    <string name="label_instructor">Instrukteur</string>
+    <string name="label_course">Kursus</string>
+
+    <string name="channel_downloads_name">Video Aflaaisels</string>
+    <string name="channel_downloads_desc">Kennisgewings vir video-aflaistatus</string>
+    <string name="channel_compression_name">Video Kompressie</string>
+    <string name="channel_compression_desc">Kennisgewings vir video-kompressiestatus</string>
+    <string name="channel_general_name">Algemene Kennisgewings</string>
+    <string name="channel_messages_name">Boodskappe</string>
+
+    <!-- MainActivity Titles -->
+    <string name="title_admin_panel">Administrasiepaneel</string>
+    <string name="title_instructor_portal">Instrukteurportaal</string>
+    <string name="title_student_dashboard">Studentekontroleskerm</string>
+
+    <!-- Auth Errors -->
+    <string name="error_enter_email_password">Voer asseblief beide e-pos en wagwoord in.</string>
+    <string name="error_failed_attempts">Veelvuldige mislukte pogings. As jy nuut is, gebruik asseblief Skep rekening.</string>
+    <string name="error_incorrect_credentials">Verkeerde e-pos of wagwoord.</string>
+    <string name="error_account_suspended">Hierdie rekening is opgeskort. Kontak \'n administrateur.</string>
+
+    <!-- Roles -->
+    <string name="role_student">Student</string>
+    <string name="role_instructor">Instrukteur</string>
+    <string name="role_admin">Admin</string>
+
+    <!-- Tabs -->
+    <string name="tab_in_progress">Besig</string>
+    <string name="tab_completed">Voltooi</string>
+    <string name="tab_saved">Gestoor</string>
+    <string name="tab_approved">Goedgekeur</string>
+    <string name="tab_pending_review">Hangende hersiening</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_course_title">Kursustitel</string>
+    <string name="placeholder_course_meta">Kursus-meta</string>
+    <string name="placeholder_completion">Voltooiing</string>
+    <string name="placeholder_user_initials">UI</string>
+    <string name="placeholder_user_name">Gebruikersnaam</string>
+    <string name="placeholder_date">2024-01-01</string>
+    <string name="placeholder_time">10:00 VM</string>
+    <string name="placeholder_chat_received">Ontvang boodskapborrel</string>
+    <string name="placeholder_chat_sent">Gestuurde boodskapborrel</string>
+
+    <string name="btn_edit">Wysig</string>
+    <string name="btn_suspend">Opskort</string>
+    <string name="label_project_video">Projekvideo</string>
+    <string name="label_video_selected">Video: %s</string>
+    <string name="label_comment">OPMERKING</string>
+    <string name="placeholder_comment_text">Hierdie is \'n opmerking of vraag oor die les.</string>
+    <string name="placeholder_university">Universiteitsnaam</string>
+
+    <!-- Additional UI Strings -->
+    <string name="notification_new_enrollment">Nuwe Inskrywing</string>
+    <string name="notification_new_message">Nuwe Boodskap</string>
+    <string name="status_active_label">Aktief</string>
+    <string name="status_suspended_label">Opgeskort</string>
+    <string name="btn_reactivate">Heraktiveer</string>
+    <string name="hint_search">Soek...</string>
+    <string name="msg_enrolled_joined_format">%1$s het by %2$s aangesluit</string>
+    <string name="msg_sent_you_message_format">%1$s het vir jou \'n boodskap gestuur.</string>
+    <string name="msg_course_live_format">Jou kursus \'%s\' is nou regstreeks.</string>
+    <string name="msg_course_rejected_format">Jou kursus \'%s\' is verwerp.</string>
+    <string name="msg_project_approved_showcase_format">Jou projek \'%s\' is goedgekeur vir Uitstalvenster!</string>
+    <string name="msg_project_rejected_format">Jou projek \'%s\' is verwerp.</string>
+    <string name="option_none_project">Geen / Persoonlike Projek</string>
+    <string name="hint_project_comment">Lewer \'n kommentaar oor hierdie projek...</string>
+    <string name="msg_waiting_internet">Wag vir internetverbinding...</string>
+</resources>
+
+
+
+

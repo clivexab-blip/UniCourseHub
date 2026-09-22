@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_showcase" android:title="@string/menu_showcase" />
+    <item android:id="@+id/menu_insights" android:title="@string/menu_insights" />
+    <item android:id="@+id/menu_competition" android:title="@string/menu_competition" />
+    <item android:id="@+id/menu_messages" android:title="@string/menu_messages" />
+    <item android:id="@+id/menu_downloads" android:title="@string/menu_downloads" />
+    <item android:id="@+id/menu_references" android:title="@string/menu_references" />
+    <item android:id="@+id/menu_post_project" android:title="@string/menu_post_project" />
+    <item android:id="@+id/menu_profile" android:title="@string/menu_student_profile" />
+    <item android:id="@+id/menu_settings" android:title="@string/menu_settings" />
+    <item android:id="@+id/menu_logout" android:title="@string/menu_logout" />
+</menu>

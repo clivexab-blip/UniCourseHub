@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_post_course" android:title="@string/menu_post_course" />
+    <item android:id="@+id/menu_insights" android:title="@string/menu_insights" />
+    <item android:id="@+id/menu_messages" android:title="@string/menu_messages" />
+    <item android:id="@+id/menu_interactions" android:title="@string/menu_interactions" />
+    <item android:id="@+id/menu_profile" android:title="@string/menu_instructor_profile" />
+    <item android:id="@+id/menu_settings" android:title="@string/menu_settings" />
+    <item android:id="@+id/menu_logout" android:title="@string/menu_logout" />
+</menu>

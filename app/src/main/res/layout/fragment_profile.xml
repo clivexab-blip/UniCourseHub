@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvAvatar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/bg_circle_avatar"
+                android:gravity="center"
+                android:text="@string/placeholder_user_initials"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/placeholder_user_name"
+                android:textColor="@color/text_primary"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/role_administrator"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tvStat1Value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero" android:textColor="@color/primary" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvStat1Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/stat_courses" android:textColor="@color/text_secondary" android:textSize="12sp" />
+                </LinearLayout>
+
+                <View android:layout_width="1dp" android:layout_height="34dp" android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tvStat2Value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero" android:textColor="@color/primary" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvStat2Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/stat_projects" android:textColor="@color/text_secondary" android:textSize="12sp" />
+                </LinearLayout>
+
+                <View android:layout_width="1dp" android:layout_height="34dp" android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tvStat3Value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero" android:textColor="@color/primary" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvStat3Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/stat_hours" android:textColor="@color/text_secondary" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_white"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <LinearLayout style="@style/ProfileRow">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_mail" xmlns:app="http://schemas.android.com/apk/res-auto" app:tint="@color/primary" />
+                <TextView android:id="@+id/tvEmail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="@string/login_email_hint" android:textColor="@color/text_primary" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginStart="16dp" />
+
+            <LinearLayout style="@style/ProfileRow">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_id" xmlns:app="http://schemas.android.com/apk/res-auto" app:tint="@color/primary" />
+                <TextView android:id="@+id/tvStudentId" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="@string/register_student_id_hint" android:textColor="@color/text_primary" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginStart="16dp" />
+
+            <LinearLayout style="@style/ProfileRow">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_person" xmlns:app="http://schemas.android.com/apk/res-auto" app:tint="@color/primary" />
+                <TextView android:id="@+id/tvRoleRow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="@string/role_student" android:textColor="@color/text_primary" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginStart="16dp" />
+
+            <LinearLayout style="@style/ProfileRow">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_calendar" xmlns:app="http://schemas.android.com/apk/res-auto" app:tint="@color/primary" />
+                <TextView android:id="@+id/tvMemberSince" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:text="@string/placeholder_date" android:textColor="@color/text_primary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLogout"
+            style="@style/ButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/btn_logout"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+</ScrollView>

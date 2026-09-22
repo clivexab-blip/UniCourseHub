@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.UniCourseHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/secondary_pink</item>
+        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowBackground">@color/background</item>
+
+        <!-- Global Text Color Overrides to fix visibility issues -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:editTextColor">@color/text_primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <!-- Material 3 Shape Appearances -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.UniCourseHub.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.UniCourseHub.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.UniCourseHub.Large</item>
+
+        <!-- Bottom Navigation Modern Look -->
+        <item name="bottomNavigationStyle">@style/Widget.UniCourseHub.BottomNavigationView</item>
+    </style>
+</resources>
