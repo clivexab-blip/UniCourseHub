@@ -37,24 +37,30 @@ class InsightsFragment : Fragment() {
         val displayDate = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault()).format(Date())
         binding.tvDate.text = displayDate.uppercase()
 
-        // SPEED OPTIMIZATION: Check Local Cache first
+        // 1. Check if an insight for today was already loaded and saved
         val cached = getCachedInsight(todayDate)
         if (cached != null) {
+            // Already loaded for today! Display instantly with no waiting
+            binding.progressBar.visibility = View.GONE
             parseAndDisplayResponse(cached)
             return
         }
 
+        // 2. First time opening today: Show fallback wisdom immediately
+        val localWisdomFormatted = getLocalDailyWisdomFormatted()
+        parseAndDisplayResponse(localWisdomFormatted)
+        binding.progressBar.visibility = View.GONE
+
+        // 3. Asynchronously fetch AI insight for today in background if internet is available
         if (isInternetAvailable()) {
-            generateDailyInsight(todayDate)
+            fetchBackgroundAiInsight(todayDate)
         } else {
-            showFallbackWisdom("Connection Required", "waiting for internet connection")
+            // Save local wisdom if offline so it stays saved for today
+            saveInsightToCache(todayDate, localWisdomFormatted)
         }
     }
 
-    private fun generateDailyInsight(todayKey: String) {
-        binding.progressBar.visibility = View.VISIBLE
-        binding.tvInsightContent.text = "Consulting the senior developers..."
-
+    private fun fetchBackgroundAiInsight(todayKey: String) {
         val prompt = "Provide one specific, high-impact career or coding insight for a junior Android developer today. " +
                 "Focus on what makes someone a 'wonderful coder' and professional best practices. " +
                 "Also provide two short pro-tips. " +
@@ -66,14 +72,11 @@ class InsightsFragment : Fragment() {
                 AiHelper.callGemini(prompt)
             }
             
-            binding.progressBar.visibility = View.GONE
-            when (result) {
-                is AiHelper.AiResult.Success -> {
-                    saveInsightToCache(todayKey, result.text)
+            if (result is AiHelper.AiResult.Success) {
+                // Save AI response to cache for today and replace fallback content seamlessly
+                saveInsightToCache(todayKey, result.text)
+                if (_binding != null) {
                     parseAndDisplayResponse(result.text)
-                }
-                is AiHelper.AiResult.Error -> {
-                    showFallbackWisdom("Vault Notice", "AI Sync in progress. Loading local senior wisdom...")
                 }
             }
         }
@@ -86,7 +89,6 @@ class InsightsFragment : Fragment() {
         val tips = mutableListOf<String>()
 
         lines.forEach { line ->
-            // Lines are already scrubbed by AiHelper
             val cleanLine = line.trim()
             when {
                 cleanLine.startsWith("Title:", ignoreCase = true) -> title = cleanLine.removePrefix("Title:").trim()
@@ -110,21 +112,18 @@ class InsightsFragment : Fragment() {
         }
     }
 
-    private fun showFallbackWisdom(title: String? = null, content: String? = null) {
+    private fun getLocalDailyWisdomFormatted(): String {
         val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
         val localInsights = listOf(
-            Insight("The Power of Empathy", "A wonderful coder writes for people, not just machines. Empathy for the next maintainer is the ultimate best practice."),
-            Insight("Fundamentals are Forever", "Frameworks change, but fundamentals like Data Structures and Algorithms stay. Sharpen them daily."),
-            Insight("The Art of Refactoring", "Deleting code is as important as writing it. Less code often means fewer bugs. Leave it cleaner than you found it.")
+            Insight("The Power of Empathy", "A wonderful coder writes for people, not just machines. Empathy for the next maintainer is the ultimate best practice.", listOf("Clean code is readable code.", "Always test your edge cases.")),
+            Insight("Fundamentals are Forever", "Frameworks change, but fundamentals like Data Structures and Algorithms stay. Sharpen them daily.", listOf("Don't repeat yourself (DRY principle).", "Keep it simple, stupid (KISS).")),
+            Insight("The Art of Refactoring", "Deleting code is as important as writing it. Less code often means fewer bugs. Leave it cleaner than you found it.", listOf("Consistency is key in a codebase.", "Write code for the next maintainer.")),
+            Insight("Mastering Asynchronous Code", "Understanding threads, coroutines, and reactive streams makes your app smooth and responsive under load.", listOf("Never block the main UI thread.", "Handle cancellation gracefully.")),
+            Insight("Design Patterns Matter", "Use architecture patterns like MVVM/MVI to keep your codebase clean, modular, and easy to test.", listOf("Separate UI from business logic.", "Keep view models lean and focused."))
         )
         
         val daily = localInsights[dayOfYear % localInsights.size]
-        binding.tvInsightTitle.text = title ?: daily.title
-        binding.tvInsightContent.text = content ?: daily.content
-        
-        binding.tipsContainer.removeAllViews()
-        addTip("Clean code is readable code.")
-        addTip("Always test your edge cases.")
+        return "Title: ${daily.title}\nContent: ${daily.content}\nTip1: ${daily.tips[0]}\nTip2: ${daily.tips[1]}"
     }
 
     private fun isInternetAvailable(): Boolean {
@@ -161,7 +160,7 @@ class InsightsFragment : Fragment() {
             .apply()
     }
 
-    data class Insight(val title: String, val content: String)
+    data class Insight(val title: String, val content: String, val tips: List<String>)
 
     override fun onDestroyView() {
         super.onDestroyView()

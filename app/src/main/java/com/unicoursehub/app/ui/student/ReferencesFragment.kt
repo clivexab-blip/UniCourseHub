@@ -73,6 +73,7 @@ class ReferencesFragment : Fragment() {
             },
             onDeleteClick = { lesson ->
                 db.deleteReference(session.getUserId(), lesson.id)
+                Toast.makeText(requireContext(), getString(R.string.msg_reference_deleted), Toast.LENGTH_SHORT).show()
                 loadReferences()
             }
         )

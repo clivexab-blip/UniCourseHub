@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Section 1"
-            android:textColor="@color/white"
-            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_chevron_down"
-            app:tint="@color/white" />
+            app:tint="@color/text_primary" />
     </LinearLayout>
 
     <LinearLayout

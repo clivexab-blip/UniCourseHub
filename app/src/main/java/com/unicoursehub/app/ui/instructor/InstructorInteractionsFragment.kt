@@ -41,6 +41,7 @@ class InstructorInteractionsFragment : Fragment() {
                     "confusing" -> db.deleteConfusingReport(interaction.interactionId)
                     "lesson_rating", "instructor_rating" -> db.deleteRating(interaction.interactionId)
                 }
+                android.widget.Toast.makeText(requireContext(), getString(com.unicoursehub.app.R.string.msg_item_deleted), android.widget.Toast.LENGTH_SHORT).show()
                 refreshList(instructorId)
             }
         )

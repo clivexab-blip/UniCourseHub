@@ -72,7 +72,7 @@ class ManageUsersFragment : Fragment() {
                         .create()
                     
                     confirmView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
-                    confirmView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_account)
+                    confirmView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_user)
                     confirmView.findViewById<android.widget.ImageView>(R.id.ivIcon).apply {
                         setImageResource(R.drawable.ic_close_circle)
                         setColorFilter(requireContext().getColor(R.color.danger))
@@ -82,9 +82,18 @@ class ManageUsersFragment : Fragment() {
                     confirmView.findViewById<android.widget.Button>(R.id.btnConfirm).apply {
                         text = getString(R.string.btn_delete)
                         setOnClickListener {
+                            val session = com.unicoursehub.app.util.SessionManager(requireContext())
+                            val isSelf = session.getUserId() == user.id
                             db.deleteUser(user.id)
-                            refresh(binding.etSearch.text.toString())
+                            android.widget.Toast.makeText(requireContext(), R.string.msg_user_deleted, android.widget.Toast.LENGTH_SHORT).show()
                             confirmDialog.dismiss()
+                            if (isSelf) {
+                                session.logout()
+                                startActivity(android.content.Intent(requireContext(), com.unicoursehub.app.ui.auth.LoginActivity::class.java))
+                                requireActivity().finish()
+                            } else {
+                                refresh(binding.etSearch.text.toString())
+                            }
                         }
                     }
                     
@@ -125,7 +134,7 @@ class ManageUsersFragment : Fragment() {
                 .create()
             
             confirmView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
-            confirmView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_account)
+            confirmView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_user)
             confirmView.findViewById<android.widget.ImageView>(R.id.ivIcon).apply {
                 setImageResource(R.drawable.ic_close_circle)
                 setColorFilter(requireContext().getColor(R.color.danger))
@@ -135,10 +144,19 @@ class ManageUsersFragment : Fragment() {
             confirmView.findViewById<android.widget.Button>(R.id.btnConfirm).apply {
                 text = getString(R.string.btn_delete)
                 setOnClickListener {
+                    val session = com.unicoursehub.app.util.SessionManager(requireContext())
+                    val isSelf = session.getUserId() == user.id
                     db.deleteUser(user.id)
-                    refresh(binding.etSearch.text.toString())
+                    android.widget.Toast.makeText(requireContext(), R.string.msg_user_deleted, android.widget.Toast.LENGTH_SHORT).show()
                     confirmDialog.dismiss()
                     dialog.dismiss()
+                    if (isSelf) {
+                        session.logout()
+                        startActivity(android.content.Intent(requireContext(), com.unicoursehub.app.ui.auth.LoginActivity::class.java))
+                        requireActivity().finish()
+                    } else {
+                        refresh(binding.etSearch.text.toString())
+                    }
                 }
             }
             

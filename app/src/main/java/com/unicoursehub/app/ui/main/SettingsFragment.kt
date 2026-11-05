@@ -89,7 +89,12 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnPrivacyPolicy.setOnClickListener {
-            Toast.makeText(requireContext(), com.unicoursehub.app.R.string.msg_opening_privacy, Toast.LENGTH_SHORT).show()
+            val fragment = PrivacyPolicyFragment()
+            (requireActivity() as? MainActivity)?.showFragment(fragment, addToBackStack = true)
+                ?: parentFragmentManager.beginTransaction()
+                    .replace(com.unicoursehub.app.R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit()
         }
         binding.btnDeleteAccount.setOnClickListener {
             val dialogView = LayoutInflater.from(requireContext()).inflate(com.unicoursehub.app.R.layout.dialog_confirm_action, null)
@@ -113,16 +118,24 @@ class SettingsFragment : Fragment() {
                     val db = com.unicoursehub.app.data.DatabaseHelper.getInstance(requireContext())
                     val userId = session.getUserId()
                     
-                    user?.delete()?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            db.deleteUser(userId)
-                            Toast.makeText(requireContext(), com.unicoursehub.app.R.string.msg_account_deleted, Toast.LENGTH_LONG).show()
-                            session.logout()
-                            startActivity(Intent(requireContext(), com.unicoursehub.app.ui.auth.LoginActivity::class.java))
-                            requireActivity().finish()
-                        } else {
-                            Toast.makeText(requireContext(), com.unicoursehub.app.R.string.msg_auth_required_delete, Toast.LENGTH_LONG).show()
+                    val performLocalDelete = {
+                        db.deleteUser(userId)
+                        Toast.makeText(requireContext(), com.unicoursehub.app.R.string.msg_account_deleted, Toast.LENGTH_LONG).show()
+                        session.logout()
+                        startActivity(Intent(requireContext(), com.unicoursehub.app.ui.auth.LoginActivity::class.java))
+                        requireActivity().finish()
+                    }
+
+                    if (user != null) {
+                        user.delete().addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                performLocalDelete()
+                            } else {
+                                Toast.makeText(requireContext(), com.unicoursehub.app.R.string.msg_auth_required_delete, Toast.LENGTH_LONG).show()
+                            }
                         }
+                    } else {
+                        performLocalDelete()
                     }
                     dialog.dismiss()
                 }

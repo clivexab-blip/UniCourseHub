@@ -451,6 +451,19 @@
     <string name="option_none_project">Abukho / Iphrojekthi Yomuntu Siqu</string>
     <string name="hint_project_comment">Shiya umbono ngale phrojekthi...</string>
     <string name="msg_waiting_internet">Imele uxhumano lwe-inthanethi...</string>
+
+    <!-- Delete Confirmation & Toast Messages -->
+    <string name="msg_course_deleted">Isifundo sicinywe ngempumelelo.</string>
+    <string name="msg_project_deleted">Iphrojekthi icinywe ngempumelelo.</string>
+    <string name="msg_user_deleted">Umsebenzisi ucinywe ngempumelelo.</string>
+    <string name="msg_lesson_deleted">Isifundo sicinywe ngempumelelo.</string>
+    <string name="msg_reference_deleted">Inkomba isusiwe.</string>
+    <string name="msg_notifications_cleared">Izaziso zicinyiwe.</string>
+    <string name="msg_item_deleted">Inxenye icinywe ngempumelelo.</string>
+    <string name="msg_confirm_delete_course">Unawe ngempela ukuthi ufuna ukucima lesi sifundo? Lesi senzo ngeke sihoxiswe.</string>
+    <string name="msg_confirm_delete_project">Unawe ngempela ukuthi ufuna ukucima le phrojekthi? Lesi senzo ngeke sihoxiswe.</string>
+    <string name="msg_confirm_delete_user">Unawe ngempela ukuthi ufuna ukucima lo msebenzisi? Lesi senzo ngeke sihoxiswe.</string>
+    <string name="msg_confirm_delete_lesson">Unawe ngempela ukuthi ufuna ukucima lesi sifundo? Lesi senzo ngeke sihoxiswe.</string>
 </resources>
 
 

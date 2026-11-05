@@ -451,6 +451,19 @@
     <string name="option_none_project">Aucun / Projet Personnel</string>
     <string name="hint_project_comment">Laissez un commentaire sur ce projet...</string>
     <string name="msg_waiting_internet">En attente d\'une connexion internet...</string>
+
+    <!-- Delete Confirmation & Toast Messages -->
+    <string name="msg_course_deleted">Cours supprimé avec succès.</string>
+    <string name="msg_project_deleted">Projet supprimé avec succès.</string>
+    <string name="msg_user_deleted">Utilisateur supprimé avec succès.</string>
+    <string name="msg_lesson_deleted">Leçon supprimée avec succès.</string>
+    <string name="msg_reference_deleted">Référence supprimée avec succès.</string>
+    <string name="msg_notifications_cleared">Notifications effacées.</string>
+    <string name="msg_item_deleted">Élément supprimé avec succès.</string>
+    <string name="msg_confirm_delete_course">Êtes-vous sûr de vouloir supprimer ce cours ? Cette action est irréversible.</string>
+    <string name="msg_confirm_delete_project">Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.</string>
+    <string name="msg_confirm_delete_user">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</string>
+    <string name="msg_confirm_delete_lesson">Êtes-vous sûr de vouloir supprimer cette leçon ? Cette action est irréversible.</string>
 </resources>
 
 

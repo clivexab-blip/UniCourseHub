@@ -52,9 +52,20 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener { finish() }
         binding.tvGoLogin.setOnClickListener { finish() }
         binding.btnCreateAccount.setOnClickListener { attemptRegister() }
+        binding.tvViewPolicy.setOnClickListener { showPolicyDialog() }
         binding.btnGoogleSignUp.setOnClickListener {
             googleSignUpLauncher.launch(GoogleAuthHelper.client(this).signInIntent)
         }
+    }
+
+    private fun showPolicyDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.fragment_privacy_policy, null)
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(R.string.title_privacy_policy)
+            .setView(dialogView)
+            .setPositiveButton(R.string.btn_ok) { d, _ -> d.dismiss() }
+            .create()
+            .show()
     }
 
     private fun attemptRegister() {
@@ -68,6 +79,10 @@ class RegisterActivity : AppCompatActivity() {
 
         if (fullName.isEmpty() || email.isEmpty() || university.isEmpty() || studentId.isEmpty() || password.isEmpty()) {
             showError(getString(R.string.error_fill_fields))
+            return
+        }
+        if (!binding.cbPolicy.isChecked) {
+            showError(getString(R.string.error_agree_policy))
             return
         }
         if (password.length < 6) {

@@ -451,6 +451,19 @@
     <string name="option_none_project">Geen / Persoonlike Projek</string>
     <string name="hint_project_comment">Lewer \'n kommentaar oor hierdie projek...</string>
     <string name="msg_waiting_internet">Wag vir internetverbinding...</string>
+
+    <!-- Delete Confirmation & Toast Messages -->
+    <string name="msg_course_deleted">Kursus suksesvol geskrap.</string>
+    <string name="msg_project_deleted">Projek suksesvol geskrap.</string>
+    <string name="msg_user_deleted">Gebruiker suksesvol geskrap.</string>
+    <string name="msg_lesson_deleted">Les suksesvol geskrap.</string>
+    <string name="msg_reference_deleted">Verwysing verwyder.</string>
+    <string name="msg_notifications_cleared">Kennisgewings skoongemaak.</string>
+    <string name="msg_item_deleted">Item suksesvol geskrap.</string>
+    <string name="msg_confirm_delete_course">Is jy seker jy wil hierdie kursus skrap? Hierdie aksie kan nie ongedaan gemaak word nie.</string>
+    <string name="msg_confirm_delete_project">Is jy seker jy wil hierdie projek skrap? Hierdie aksie kan nie ongedaan gemaak word nie.</string>
+    <string name="msg_confirm_delete_user">Is jy seker jy wil hierdie gebruiker skrap? Hierdie aksie kan nie ongedaan gemaak word nie.</string>
+    <string name="msg_confirm_delete_lesson">Is jy seker jy wil hierdie les skrap? Hierdie aksie kan nie ongedaan gemaak word nie.</string>
 </resources>
 
 

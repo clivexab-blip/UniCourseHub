@@ -75,6 +75,25 @@ class ModuleAdapter(
                 lessonBinding.tvLessonRating.visibility = android.view.View.GONE
             }
 
+            // Quiz Badge display & click handler
+            val db = com.unicoursehub.app.data.DatabaseHelper.getInstance(context)
+            val quizQuestions = db.getQuizQuestionsForLesson(lesson.id)
+            val hasQuiz = lesson.hasQuiz || quizQuestions.isNotEmpty()
+
+            if (hasQuiz) {
+                lessonBinding.tvQuizBadge.visibility = android.view.View.VISIBLE
+                lessonBinding.tvQuizBadge.setOnClickListener {
+                    val qList = if (quizQuestions.isNotEmpty()) quizQuestions else db.getQuizQuestionsForLesson(lesson.id)
+                    if (qList.isNotEmpty()) {
+                        com.unicoursehub.app.ui.dialogs.QuizStudentDialog(context, qList).show()
+                    } else {
+                        android.widget.Toast.makeText(context, "No quiz questions created for this lesson yet.", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                lessonBinding.tvQuizBadge.visibility = android.view.View.GONE
+            }
+
             lessonBinding.btnLessonMenu.setOnClickListener { onMenuClick?.invoke(lesson, it) }
             lessonBinding.btnDownload.setOnClickListener { onDownloadClick?.invoke(lesson) }
 

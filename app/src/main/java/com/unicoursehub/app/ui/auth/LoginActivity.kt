@@ -92,33 +92,24 @@ class LoginActivity : AppCompatActivity() {
     private fun resolveLocalProfile(uid: String, email: String, displayName: String, isGoogle: Boolean) {
         var profile = db.getUserByFirebaseUid(uid)
 
-        // Permanent fix: Check SQLite for role based on email if UID doesn't match
-        if (profile == null) {
-            val existingByEmail = db.getAllUsers().find { it.email.equals(email, ignoreCase = true) }
+        // Look up SQLite for profile by email if UID isn't linked yet
+        if (profile == null && email.isNotEmpty()) {
+            val existingByEmail = db.getUserByEmail(email)
             if (existingByEmail != null) {
                 db.linkFirebaseUidToEmail(email, uid)
                 profile = db.getUserByFirebaseUid(uid)
             }
         }
 
-        // AUTO-REPAIR: If user is authenticated in Firebase but missing from SQLite
-        // (This happens if the DB was wiped or this is a new SSO user)
+        // If brand new account (not in SQLite yet), direct to CompleteProfileActivity to pick role explicitly
         if (profile == null) {
-            val name = displayName.ifBlank { email.substringBefore("@") }
-            val autoRole = when {
-                email.contains("admin", ignoreCase = true) -> "admin"
-                email.contains("instructor", ignoreCase = true) || email.contains("teacher", ignoreCase = true) -> "instructor"
-                else -> "student"
-            }
-            
-            // Create the missing profile so the user can actually use the app
-            val newId = db.createUserProfile(uid, name, email, "University", "PENDING", autoRole)
-            profile = db.getUserById(newId)
-        }
-
-        if (profile == null) {
-            auth.signOut()
-            showError(getString(R.string.error_incorrect_credentials))
+            startActivity(
+                Intent(this, CompleteProfileActivity::class.java)
+                    .putExtra("uid", uid)
+                    .putExtra("email", email)
+                    .putExtra("displayName", displayName)
+            )
+            finish()
             return
         }
 

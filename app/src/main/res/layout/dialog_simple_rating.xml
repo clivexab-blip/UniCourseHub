@@ -75,13 +75,9 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:numStars="5"
                 android:stepSize="1.0"
-                android:theme="@style/RatingBarTheme"
-                android:scaleX="1.1"
-                android:scaleY="1.1"
-                android:transformPivotX="0dp" />
+                android:theme="@style/RatingBarTheme" />
 
             <ImageButton
                 android:id="@+id/btnSubmit"

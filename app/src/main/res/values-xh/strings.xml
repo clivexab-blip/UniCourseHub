@@ -451,6 +451,19 @@
     <string name="option_none_project">Hayi / Iprojekthi yoMntu</string>
     <string name="hint_project_comment">Shiya uluvo ngale projekthi...</string>
     <string name="msg_waiting_internet">Ilinde uxhulumaniso lwe-intanethi...</string>
+
+    <!-- Delete Confirmation & Toast Messages -->
+    <string name="msg_course_deleted">Ikhosi icinywe ngempumelelo.</string>
+    <string name="msg_project_deleted">Iprojekthi icinywe ngempumelelo.</string>
+    <string name="msg_user_deleted">Umsebenzisi ucinywe ngempumelelo.</string>
+    <string name="msg_lesson_deleted">Isifundo sicinywe ngempumelelo.</string>
+    <string name="msg_reference_deleted">Isalathiso susiwe.</string>
+    <string name="msg_notifications_cleared">Izaziso zicinyiwe.</string>
+    <string name="msg_item_deleted">Into icinywe ngempumelelo.</string>
+    <string name="msg_confirm_delete_course">Uqinisekile ufuna ukucima le khosi? Eli nyathelo alinakubuyiselwa umva.</string>
+    <string name="msg_confirm_delete_project">Uqinisekile ufuna ukucima le projekthi? Eli nyathelo alinakubuyiselwa umva.</string>
+    <string name="msg_confirm_delete_user">Uqinisekile ufuna ukucima lo msebenzisi? Eli nyathelo alinakubuyiselwa umva.</string>
+    <string name="msg_confirm_delete_lesson">Uqinisekile ufuna ukucima le sifundo? Eli nyathelo alinakubuyiselwa umva.</string>
 </resources>
 
 

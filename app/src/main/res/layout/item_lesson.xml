@@ -15,7 +15,7 @@
         android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:text="1"
-        android:textColor="@color/white"
+        android:textColor="@color/text_primary"
         android:textSize="14sp"
         android:gravity="center" />
 
@@ -37,7 +37,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:src="@drawable/ic_check_circle"
-                app:tint="@color/primary_light"
+                app:tint="@color/text_primary"
                 android:visibility="gone" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Lesson Title"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:maxLines="2"
                 android:ellipsize="end" />
@@ -64,11 +64,11 @@
                 android:id="@+id/tvCc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#33FFFFFF"
+                android:background="@drawable/bg_card_white"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:text="CC"
-                android:textColor="#BDBDBD"
+                android:textColor="@color/text_secondary"
                 android:textSize="9sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="Video - 03:25 mins"
-                android:textColor="#BDBDBD"
+                android:textColor="@color/text_secondary"
                 android:textSize="11sp" />
 
             <TextView
@@ -88,9 +88,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="0.0 ★"
-                android:textColor="@color/warning"
+                android:textColor="@color/text_primary"
                 android:textSize="11sp"
                 android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvQuizBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_status_purple"
+                android:paddingStart="8dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                android:text="📝 Quiz"
+                android:textColor="@color/purple_text"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
                 android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
@@ -101,7 +119,7 @@
         android:layout_height="32dp"
         android:padding="6dp"
         android:src="@drawable/ic_download_circle"
-        app:tint="@color/white" />
+        app:tint="@color/text_primary" />
 
     <ImageView
         android:id="@+id/btnLessonMenu"
@@ -109,6 +127,6 @@
         android:layout_height="32dp"
         android:padding="6dp"
         android:src="@drawable/ic_more_vert"
-        app:tint="@color/white" />
+        app:tint="@color/text_primary" />
 
 </LinearLayout>

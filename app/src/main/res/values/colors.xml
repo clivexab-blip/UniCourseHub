@@ -30,15 +30,15 @@
     <color name="accent_green">#22C55E</color>
     <color name="accent_blue">#3B82F6</color>
 
-    <!-- Neutral -->
-    <color name="background">#F3F4F6</color>
+    <!-- Neutral: Clean White Background & Black Text -->
+    <color name="background">#FFFFFF</color>
     <color name="surface">#FFFFFF</color>
-    <color name="bg_input">#F3F4F6</color>
-    <color name="text_primary">#111827</color>
-    <color name="text_secondary">#6B7280</color>
-    <color name="text_hint">#9CA3AF</color>
-    <color name="divider">#E5E7EB</color>
-    <color name="bg_icon_circle">#F3F4F6</color>
+    <color name="bg_input">#F8FAFC</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#111827</color>
+    <color name="text_hint">#64748B</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="bg_icon_circle">#F1F5F9</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
@@ -51,4 +51,12 @@
     <color name="tile_blue_end">#0EA5E9</color>
     <color name="tile_orange_start">#FBBF24</color>
     <color name="tile_orange_end">#F59E0B</color>
+
+    <!-- Banner & Header Overrides -->
+    <color name="banner_bg_start">#6C63FF</color>
+    <color name="banner_bg_end">#4F46E5</color>
+    <color name="banner_text">#FFFFFF</color>
+    <color name="button_bg_start">#6C63FF</color>
+    <color name="button_bg_end">#4F46E5</color>
+    <color name="button_text">#FFFFFF</color>
 </resources>

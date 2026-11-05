@@ -50,6 +50,7 @@ class NotificationsFragment : Fragment() {
 
         binding.btnClearAll.setOnClickListener {
             db.deleteNotifications(session.getUserId())
+            android.widget.Toast.makeText(requireContext(), getString(com.unicoursehub.app.R.string.msg_notifications_cleared), android.widget.Toast.LENGTH_SHORT).show()
             (requireActivity() as MainActivity).refreshPendingBadge()
             adapter.submitList(emptyList())
             binding.tvEmpty.visibility = View.VISIBLE

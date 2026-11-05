@@ -21,13 +21,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#33FFFFFF"
+                android:background="@drawable/bg_card_white"
                 android:paddingStart="14dp"
                 android:paddingTop="6dp"
                 android:paddingEnd="14dp"
                 android:paddingBottom="6dp"
                 android:text="@string/competition_prize"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
                 android:textSize="13sp" />
 
             <TextView
@@ -36,7 +37,7 @@
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/title_competition"
-                android:textColor="@color/white"
+                android:textColor="@color/banner_text"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -45,18 +46,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/subtitle_competition"
-                android:textColor="#EDE9FE"
+                android:textColor="@color/banner_text"
                 android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btnSubmitEntry"
+                style="@style/ButtonPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/white"
                 android:text="@string/btn_submit_entry"
-                android:textAllCaps="false"
-                android:textColor="@color/primary"
+                android:textColor="@color/button_text"
                 android:textStyle="bold" />
         </LinearLayout>
 

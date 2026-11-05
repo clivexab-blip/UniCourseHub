@@ -91,7 +91,7 @@ class ManageCoursesFragment : Fragment() {
                         .create()
                     
                     dialogView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
-                    dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = "Are you sure you want to delete '${course.title}'?"
+                    dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_course)
                     dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).apply {
                         setImageResource(R.drawable.ic_close_circle)
                         setColorFilter(requireContext().getColor(R.color.danger))
@@ -102,6 +102,7 @@ class ManageCoursesFragment : Fragment() {
                         text = getString(R.string.btn_delete)
                         setOnClickListener {
                             db.deleteCourse(course.id)
+                            android.widget.Toast.makeText(requireContext(), R.string.msg_course_deleted, android.widget.Toast.LENGTH_SHORT).show()
                             selectTab(currentFilter)
                             dialog.dismiss()
                         }

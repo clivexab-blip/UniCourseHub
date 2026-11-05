@@ -25,13 +25,13 @@ class InteractionAdapter(
         val item = getItem(position)
         with(holder.binding) {
             tvType.text = item.type.replace("_", " ").uppercase()
-            val bgRes = when (item.type) {
-                "comment" -> R.drawable.bg_status_info
-                "lesson_rating" -> R.drawable.bg_status_purple
-                "instructor_rating" -> R.drawable.bg_status_purple
-                else -> R.drawable.bg_status_warning
+            val (bgRes, textColRes) = when (item.type) {
+                "comment" -> R.drawable.bg_status_info to R.color.info
+                "lesson_rating", "instructor_rating" -> R.drawable.bg_status_purple to R.color.purple_text
+                else -> R.drawable.bg_status_warning to R.color.warning
             }
             tvType.setBackgroundResource(bgRes)
+            tvType.setTextColor(tvType.context.getColor(textColRes))
             
             tvUser.text = tvUser.context.getString(R.string.label_from_user, item.userName)
             tvLesson.text = if (item.type == "instructor_rating") "Instructor Profile" else tvLesson.context.getString(R.string.label_lesson, item.lessonTitle)
@@ -40,7 +40,6 @@ class InteractionAdapter(
             
             if (item.rating > 0) {
                 ratingBar.visibility = android.view.View.VISIBLE
-                // Apply decimal-perfect half-star logic
                 val roundedRating = if (item.rating % 1 >= 0.5f) {
                     item.rating.toInt() + 0.5f
                 } else {

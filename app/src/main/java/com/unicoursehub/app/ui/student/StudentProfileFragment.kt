@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.unicoursehub.app.R
 import com.unicoursehub.app.data.DatabaseHelper
 import com.unicoursehub.app.databinding.FragmentProfileBinding
 import com.unicoursehub.app.ui.auth.LoginActivity
@@ -34,17 +35,17 @@ class StudentProfileFragment : Fragment() {
         with(binding) {
             tvAvatar.text = CourseVisuals.initials(user.fullName)
             tvName.text = user.fullName
-            tvRole.text = getString(com.unicoursehub.app.R.string.role_student)
+            tvRole.text = getString(R.string.role_student)
             tvStat1Value.text = enrollments.size.toString()
-            tvStat1Label.text = getString(com.unicoursehub.app.R.string.stat_courses)
+            tvStat1Label.text = getString(R.string.stat_courses)
             tvStat2Value.text = projects.size.toString()
-            tvStat2Label.text = getString(com.unicoursehub.app.R.string.stat_projects)
+            tvStat2Label.text = getString(R.string.stat_projects)
             tvStat3Value.text = (enrollments.size * 8).toString()
-            tvStat3Label.text = getString(com.unicoursehub.app.R.string.stat_hours)
+            tvStat3Label.text = getString(R.string.stat_hours)
             tvEmail.text = user.email
             tvStudentId.text = user.studentId.ifEmpty { "—" }
-            tvRoleRow.text = getString(com.unicoursehub.app.R.string.role_student)
-            tvMemberSince.text = getString(com.unicoursehub.app.R.string.member_since_format, user.createdAt.ifEmpty { "2024" })
+            tvRoleRow.text = getString(R.string.role_student)
+            tvMemberSince.text = getString(R.string.member_since_format, user.createdAt.ifEmpty { "2024" })
 
             btnLogout.setOnClickListener {
                 session.logout()

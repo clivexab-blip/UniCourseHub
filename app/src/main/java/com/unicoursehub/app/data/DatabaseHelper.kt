@@ -42,6 +42,7 @@ class DatabaseHelper private constructor(context: Context) :
         const val TABLE_MESSAGES = "messages"
         const val TABLE_NOTIFICATIONS = "notifications"
         const val TABLE_RATINGS = "ratings"
+        const val TABLE_QUIZ_QUESTIONS = "quiz_questions"
 
         @Volatile
         private var INSTANCE: DatabaseHelper? = null
@@ -249,6 +250,22 @@ class DatabaseHelper private constructor(context: Context) :
             """.trimIndent()
         )
 
+        db.execSQL(
+            """
+            CREATE TABLE $TABLE_QUIZ_QUESTIONS (
+                question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                lesson_id INTEGER NOT NULL,
+                question_text TEXT NOT NULL,
+                option_a TEXT NOT NULL,
+                option_b TEXT NOT NULL,
+                option_c TEXT NOT NULL,
+                option_d TEXT NOT NULL,
+                correct_option INTEGER NOT NULL DEFAULT 0,
+                FOREIGN KEY(lesson_id) REFERENCES $TABLE_LESSONS(lesson_id)
+            )
+            """.trimIndent()
+        )
+
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_user_firebase ON $TABLE_USERS(firebase_uid)")
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_user_email ON $TABLE_USERS(email)")
 
@@ -268,6 +285,7 @@ class DatabaseHelper private constructor(context: Context) :
         db.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_MESSAGES (message_id INTEGER PRIMARY KEY AUTOINCREMENT, sender_id INTEGER NOT NULL, receiver_id INTEGER NOT NULL, text TEXT NOT NULL, timestamp TEXT, is_read INTEGER DEFAULT 0, FOREIGN KEY(sender_id) REFERENCES $TABLE_USERS(user_id), FOREIGN KEY(receiver_id) REFERENCES $TABLE_USERS(user_id))")
         db.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_NOTIFICATIONS (notification_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, title TEXT NOT NULL, message TEXT NOT NULL, timestamp TEXT, is_read INTEGER DEFAULT 0, FOREIGN KEY(user_id) REFERENCES $TABLE_USERS(user_id))")
         db.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_RATINGS (rating_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, entity_id INTEGER NOT NULL, entity_type TEXT NOT NULL, rating_value REAL NOT NULL, comment TEXT, timestamp TEXT, FOREIGN KEY(user_id) REFERENCES $TABLE_USERS(user_id))")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_QUIZ_QUESTIONS (question_id INTEGER PRIMARY KEY AUTOINCREMENT, lesson_id INTEGER NOT NULL, question_text TEXT NOT NULL, option_a TEXT NOT NULL, option_b TEXT NOT NULL, option_c TEXT NOT NULL, option_d TEXT NOT NULL, correct_option INTEGER NOT NULL DEFAULT 0, FOREIGN KEY(lesson_id) REFERENCES $TABLE_LESSONS(lesson_id))")
 
         if (oldVersion < 2) {
             // Add columns for offline video
@@ -343,14 +361,7 @@ class DatabaseHelper private constructor(context: Context) :
             try { db.execSQL("ALTER TABLE $TABLE_LESSONS ADD COLUMN rating_count INTEGER DEFAULT 0") } catch (_: Exception) {}
         }
         if (oldVersion < 10) {
-            // One-time cleanup of demo projects and courses for a fresh start
-            db.execSQL("DELETE FROM $TABLE_PROJECTS")
-            db.execSQL("DELETE FROM $TABLE_LESSONS")
-            db.execSQL("DELETE FROM $TABLE_COURSES")
-            db.execSQL("DELETE FROM $TABLE_ENROLLMENTS")
-            db.execSQL("DELETE FROM $TABLE_COMMENTS")
-            db.execSQL("DELETE FROM $TABLE_CONFUSING_REPORTS")
-            db.execSQL("DELETE FROM $TABLE_REFERENCES")
+            // Ensure all tables exist without deleting any production data
         }
         if (oldVersion < 11) {
             db.execSQL("""
@@ -410,6 +421,111 @@ class DatabaseHelper private constructor(context: Context) :
         user("Dr. Brown", "brown@university.edu", "Stanford University", "INS-1003", "instructor")
         user("John Doe", "john.doe@university.edu", "Stanford University", "STU-1001", "student")
         user("Sarah K.", "sarah.k@university.edu", "Stanford University", "STU-1002", "student")
+
+        ensureSampleCoursesExist(db)
+    }
+
+    fun ensureSampleCoursesExist(db: SQLiteDatabase) {
+        var count = 0
+        db.rawQuery("SELECT COUNT(*) FROM $TABLE_COURSES", null).use { c ->
+            if (c.moveToFirst()) count = c.getInt(0)
+        }
+
+        if (count == 0) {
+            val instructors = mutableListOf<Long>()
+            db.rawQuery("SELECT user_id FROM $TABLE_USERS WHERE role = 'instructor'", null).use { c ->
+                while (c.moveToNext()) instructors.add(c.getLong(0))
+            }
+            val defaultInstructorId = instructors.firstOrNull() ?: 3L
+
+            fun addCourse(title: String, code: String, category: String, semester: String, desc: String, instId: Long, tile: String): Long {
+                val cv = ContentValues().apply {
+                    put("title", title)
+                    put("code", code)
+                    put("category", category)
+                    put("semester", semester)
+                    put("description", desc)
+                    put("instructor_id", instId)
+                    put("status", "published")
+                    put("students_count", 24)
+                    put("completion_rate", 78)
+                    put("tile_color", tile)
+                    put("rating", 4.8f)
+                    put("rating_count", 12)
+                }
+                return db.insert(TABLE_COURSES, null, cv)
+            }
+
+            val c1 = addCourse("Full Stack Web Development", "CS 501", "Web Dev", "Fall 2025", "Learn HTML, CSS, JavaScript, Node.js, and React to build modern responsive web applications.", defaultInstructorId, "purple")
+            val c2 = addCourse("Android App Development with Kotlin", "CS 502", "Mobile Dev", "Spring 2026", "Master modern Android development using Kotlin, Jetpack Compose, Room Database, and Coroutines.", defaultInstructorId, "pink")
+            val c3 = addCourse("Database Systems & SQL", "CS 503", "Databases", "Fall 2025", "Understand relational database management systems, complex SQL queries, and data indexing.", defaultInstructorId, "blue")
+            val c4 = addCourse("AI/ML Fundamentals", "CS 504", "AI/ML", "Spring 2026", "Explore machine learning algorithms, neural networks, and AI integration for mobile applications.", defaultInstructorId, "orange")
+
+            fun addLesson(courseId: Long, module: String, title: String, type: String, duration: String, orderIdx: Int, url: String? = null, hasQuiz: Boolean = false): Long {
+                val cv = ContentValues().apply {
+                    put("course_id", courseId)
+                    put("module_name", module)
+                    put("title", title)
+                    put("type", type)
+                    put("status", "published")
+                    put("duration", duration)
+                    put("order_index", orderIdx)
+                    put("watched", 0)
+                    put("video_url", url)
+                    put("has_quiz", if (hasQuiz) 1 else 0)
+                    put("rating", 4.9f)
+                    put("rating_count", 8)
+                }
+                return db.insert(TABLE_LESSONS, null, cv)
+            }
+
+            val l1 = addLesson(c1, "Module 1: Web Basics", "1. HTML Structure & Semantic Tags", "video", "10:15", 1, "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", true)
+            val l2 = addLesson(c1, "Module 1: Web Basics", "2. CSS Flexbox & Grid Layouts", "video", "14:30", 2, "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", false)
+            val l3 = addLesson(c1, "Module 2: JavaScript", "3. JavaScript Async/Await & Promises", "video", "18:20", 3, "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", true)
+
+            val l4 = addLesson(c2, "Module 1: Kotlin Intro", "1. Kotlin Syntax & Fundamentals", "video", "12:00", 1, "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4", true)
+            val l5 = addLesson(c2, "Module 1: Kotlin Intro", "2. Jetpack Compose UI Architecture", "video", "22:45", 2, "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4", false)
+
+            fun addQuizQuestion(lessonId: Long, qText: String, optA: String, optB: String, optC: String, optD: String, correctIdx: Int) {
+                val cv = ContentValues().apply {
+                    put("lesson_id", lessonId)
+                    put("question_text", qText)
+                    put("option_a", optA)
+                    put("option_b", optB)
+                    put("option_c", optC)
+                    put("option_d", optD)
+                    put("correct_option", correctIdx)
+                }
+                db.insert(TABLE_QUIZ_QUESTIONS, null, cv)
+            }
+
+            addQuizQuestion(l1, "What does HTML stand for?", "HyperText Markup Language", "HighText Machine Language", "HyperTabular Model Language", "None of the above", 0)
+            addQuizQuestion(l1, "Which HTML tag is used for the largest heading?", "<h6>", "<h1>", "<header>", "<heading>", 1)
+            addQuizQuestion(l3, "Which keyword is used to handle asynchronous operations in JavaScript?", "async/await", "thread/run", "defer/promise", "sync/hold", 0)
+            addQuizQuestion(l4, "Which keyword defines an immutable variable in Kotlin?", "var", "val", "const", "let", 1)
+
+            val students = mutableListOf<Long>()
+            db.rawQuery("SELECT user_id FROM $TABLE_USERS WHERE role = 'student'", null).use { c ->
+                while (c.moveToNext()) students.add(c.getLong(0))
+            }
+            for (stId in students) {
+                val cvE1 = ContentValues().apply {
+                    put("student_id", stId)
+                    put("course_id", c1)
+                    put("progress", 33)
+                    put("status", "in_progress")
+                }
+                db.insert(TABLE_ENROLLMENTS, null, cvE1)
+
+                val cvE2 = ContentValues().apply {
+                    put("student_id", stId)
+                    put("course_id", c2)
+                    put("progress", 50)
+                    put("status", "in_progress")
+                }
+                db.insert(TABLE_ENROLLMENTS, null, cvE2)
+            }
+        }
     }
 
     // ----------------------------------------------------------------------------------
@@ -437,6 +553,20 @@ class DatabaseHelper private constructor(context: Context) :
         db.rawQuery("SELECT user_id FROM $TABLE_USERS WHERE email = ?", arrayOf(email)).use {
             return it.count > 0
         }
+    }
+
+    fun updateUserRole(userId: Long, role: String) {
+        val db = writableDatabase
+        val cv = ContentValues().apply { put("role", role) }
+        db.update(TABLE_USERS, cv, "user_id = ?", arrayOf(userId.toString()))
+    }
+
+    fun getUserByEmail(email: String): User? {
+        val db = readableDatabase
+        db.rawQuery("SELECT * FROM $TABLE_USERS WHERE LOWER(email) = LOWER(?)", arrayOf(email.trim())).use { c ->
+            if (c.moveToFirst()) return c.toUser()
+        }
+        return null
     }
 
     /** Looks up the local profile linked to a signed-in Firebase account. Null if this is a brand-new account. */
@@ -514,6 +644,18 @@ class DatabaseHelper private constructor(context: Context) :
         val db = writableDatabase
         db.beginTransaction()
         try {
+            // 1. Delete all courses created by this instructor (if user is an instructor)
+            val courseIds = mutableListOf<Long>()
+            db.rawQuery("SELECT course_id FROM $TABLE_COURSES WHERE instructor_id = ?", arrayOf(userId.toString())).use { c ->
+                while (c.moveToNext()) {
+                    courseIds.add(c.getLong(0))
+                }
+            }
+            for (cId in courseIds) {
+                deleteCourseInternal(db, cId)
+            }
+
+            // 2. Delete user's user-level records
             db.delete(TABLE_MESSAGES, "sender_id = ? OR receiver_id = ?", arrayOf(userId.toString(), userId.toString()))
             db.delete(TABLE_NOTIFICATIONS, "user_id = ?", arrayOf(userId.toString()))
             db.delete(TABLE_RATINGS, "user_id = ?", arrayOf(userId.toString())) // Clean up ratings made by user
@@ -521,6 +663,7 @@ class DatabaseHelper private constructor(context: Context) :
             db.delete(TABLE_PROJECTS, "student_id = ?", arrayOf(userId.toString()))
             db.delete(TABLE_COMMENTS, "user_id = ?", arrayOf(userId.toString()))
             db.delete(TABLE_REFERENCES, "user_id = ?", arrayOf(userId.toString()))
+            db.delete(TABLE_CONFUSING_REPORTS, "user_id = ?", arrayOf(userId.toString()))
             db.delete(TABLE_USERS, "user_id = ?", arrayOf(userId.toString()))
             db.setTransactionSuccessful()
         } finally {
@@ -755,31 +898,52 @@ class DatabaseHelper private constructor(context: Context) :
             }
         }
 
+        // Calculate global average C for this entity_type (Bayesian Weighted Rating)
+        var globalAvg = 3.0f
+        db.rawQuery(
+            "SELECT AVG(rating_value) FROM $TABLE_RATINGS WHERE entity_type = ?",
+            arrayOf(entityType)
+        ).use { c ->
+            if (c.moveToFirst() && !c.isNull(0)) {
+                globalAvg = c.getFloat(0)
+            }
+        }
+
+        val minVotes = 1.0f
+        val finalRating = if (count > 0) {
+            val v = count.toFloat()
+            val R = avg
+            // Bayesian Weighted Rating formula (IMDb style)
+            (v / (v + minVotes) * R) + (minVotes / (v + minVotes) * globalAvg)
+        } else {
+            0.0f
+        }
+
         when (entityType) {
             "lesson" -> {
                 val cv = ContentValues().apply {
-                    put("rating", avg)
+                    put("rating", finalRating)
                     put("rating_count", count)
                 }
                 db.update(TABLE_LESSONS, cv, "lesson_id = ?", arrayOf(entityId.toString()))
             }
             "course" -> {
                 val cv = ContentValues().apply {
-                    put("rating", avg)
+                    put("rating", finalRating)
                     put("rating_count", count)
                 }
                 db.update(TABLE_COURSES, cv, "course_id = ?", arrayOf(entityId.toString()))
             }
             "project" -> {
                 val cv = ContentValues().apply {
-                    put("rating", avg)
+                    put("rating", finalRating)
                     put("rating_count", count)
                 }
                 db.update(TABLE_PROJECTS, cv, "project_id = ?", arrayOf(entityId.toString()))
             }
             "instructor" -> {
                 val cv = ContentValues().apply {
-                    put("rating", avg)
+                    put("rating", finalRating)
                     put("rating_count", count)
                 }
                 db.update(TABLE_USERS, cv, "user_id = ?", arrayOf(entityId.toString()))
@@ -825,6 +989,74 @@ class DatabaseHelper private constructor(context: Context) :
         }
     }
 
+    fun saveQuizQuestionsForLesson(lessonId: Long, questions: List<QuizQuestion>) {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            db.delete(TABLE_QUIZ_QUESTIONS, "lesson_id = ?", arrayOf(lessonId.toString()))
+            for (q in questions) {
+                val cv = ContentValues().apply {
+                    put("lesson_id", lessonId)
+                    put("question_text", q.questionText)
+                    put("option_a", q.optionA)
+                    put("option_b", q.optionB)
+                    put("option_c", q.optionC)
+                    put("option_d", q.optionD)
+                    put("correct_option", q.correctOption)
+                }
+                db.insert(TABLE_QUIZ_QUESTIONS, null, cv)
+            }
+            val cvLesson = ContentValues().apply {
+                put("has_quiz", if (questions.isNotEmpty()) 1 else 0)
+            }
+            db.update(TABLE_LESSONS, cvLesson, "lesson_id = ?", arrayOf(lessonId.toString()))
+            db.setTransactionSuccessful()
+        } finally {
+            db.endTransaction()
+        }
+    }
+
+    fun getQuizQuestionsForLesson(lessonId: Long): List<QuizQuestion> {
+        val list = mutableListOf<QuizQuestion>()
+        val db = readableDatabase
+        db.rawQuery(
+            "SELECT * FROM $TABLE_QUIZ_QUESTIONS WHERE lesson_id = ? ORDER BY question_id ASC",
+            arrayOf(lessonId.toString())
+        ).use { c ->
+            while (c.moveToNext()) {
+                list.add(
+                    QuizQuestion(
+                        id = c.getLong(c.getColumnIndexOrThrow("question_id")),
+                        lessonId = c.getLong(c.getColumnIndexOrThrow("lesson_id")),
+                        questionText = c.getString(c.getColumnIndexOrThrow("question_text")),
+                        optionA = c.getString(c.getColumnIndexOrThrow("option_a")),
+                        optionB = c.getString(c.getColumnIndexOrThrow("option_b")),
+                        optionC = c.getString(c.getColumnIndexOrThrow("option_c")),
+                        optionD = c.getString(c.getColumnIndexOrThrow("option_d")),
+                        correctOption = c.getInt(c.getColumnIndexOrThrow("correct_option"))
+                    )
+                )
+            }
+        }
+        return list
+    }
+
+    fun updateProject(project: Project) {
+        val db = writableDatabase
+        val cv = ContentValues().apply {
+            put("title", project.title)
+            put("related_course_id", project.relatedCourseId)
+            put("project_type", project.projectType)
+            put("semester", project.semester)
+            put("description", project.description)
+            put("github_repo", project.githubRepo)
+            put("category", project.category)
+            put("status", "pending")
+            if (project.linkedDocPath != null) put("linked_doc_path", project.linkedDocPath)
+        }
+        db.update(TABLE_PROJECTS, cv, "project_id = ?", arrayOf(project.id.toString()))
+    }
+
     fun deleteLesson(lessonId: Long) {
         val db = writableDatabase
         db.beginTransaction()
@@ -835,6 +1067,10 @@ class DatabaseHelper private constructor(context: Context) :
             db.delete(TABLE_COMMENTS, "lesson_id = ?", arrayOf(lessonId.toString()))
             // Delete report
             db.delete(TABLE_CONFUSING_REPORTS, "lesson_id = ?", arrayOf(lessonId.toString()))
+            // Delete references
+            db.delete(TABLE_REFERENCES, "lesson_id = ?", arrayOf(lessonId.toString()))
+            // Delete quiz questions
+            db.delete(TABLE_QUIZ_QUESTIONS, "lesson_id = ?", arrayOf(lessonId.toString()))
             // Delete lesson
             db.delete(TABLE_LESSONS, "lesson_id = ?", arrayOf(lessonId.toString()))
             db.setTransactionSuccessful()
@@ -847,54 +1083,58 @@ class DatabaseHelper private constructor(context: Context) :
         val db = writableDatabase
         db.beginTransaction()
         try {
-            // 1. Get all lesson IDs for this course to clean up their sub-records
-            val lessonIds = mutableListOf<String>()
-            db.rawQuery("SELECT lesson_id FROM $TABLE_LESSONS WHERE course_id = ?", arrayOf(courseId.toString())).use { c ->
-                while (c.moveToNext()) {
-                    lessonIds.add(c.getLong(0).toString())
-                }
-            }
-
-            if (lessonIds.isNotEmpty()) {
-                val placeholders = lessonIds.joinToString(",") { "?" }
-                val idsArray = lessonIds.toTypedArray()
-                
-                // 2. Delete sub-records for these lessons
-                db.delete(TABLE_RATINGS, "entity_id IN ($placeholders) AND entity_type = 'lesson'", idsArray)
-                db.delete(TABLE_COMMENTS, "lesson_id IN ($placeholders)", idsArray)
-                db.delete(TABLE_CONFUSING_REPORTS, "lesson_id IN ($placeholders)", idsArray)
-                db.delete(TABLE_REFERENCES, "lesson_id IN ($placeholders)", idsArray)
-            }
-
-            // 3. Delete lessons themselves
-            db.delete(TABLE_LESSONS, "course_id = ?", arrayOf(courseId.toString()))
-            // 4. Delete enrollments
-            db.delete(TABLE_ENROLLMENTS, "course_id = ?", arrayOf(courseId.toString()))
-            
-            // 5. Delete associated projects and their ratings
-            val projectIds = mutableListOf<String>()
-            db.rawQuery("SELECT project_id FROM $TABLE_PROJECTS WHERE related_course_id = ?", arrayOf(courseId.toString())).use { c ->
-                while (c.moveToNext()) {
-                    projectIds.add(c.getLong(0).toString())
-                }
-            }
-            if (projectIds.isNotEmpty()) {
-                val pPlaceholders = projectIds.joinToString(",") { "?" }
-                val pIdsArray = projectIds.toTypedArray()
-                db.delete(TABLE_RATINGS, "entity_id IN ($pPlaceholders) AND entity_type = 'project'", pIdsArray)
-            }
-            db.delete(TABLE_PROJECTS, "related_course_id = ?", arrayOf(courseId.toString()))
-            
-            // 6. Delete course ratings
-            db.delete(TABLE_RATINGS, "entity_id = ? AND entity_type = 'course'", arrayOf(courseId.toString()))
-            
-            // 7. Delete the course
-            db.delete(TABLE_COURSES, "course_id = ?", arrayOf(courseId.toString()))
-            
+            deleteCourseInternal(db, courseId)
             db.setTransactionSuccessful()
         } finally {
             db.endTransaction()
         }
+    }
+
+    private fun deleteCourseInternal(db: SQLiteDatabase, courseId: Long) {
+        // 1. Get all lesson IDs for this course to clean up their sub-records
+        val lessonIds = mutableListOf<String>()
+        db.rawQuery("SELECT lesson_id FROM $TABLE_LESSONS WHERE course_id = ?", arrayOf(courseId.toString())).use { c ->
+            while (c.moveToNext()) {
+                lessonIds.add(c.getLong(0).toString())
+            }
+        }
+
+        if (lessonIds.isNotEmpty()) {
+            val placeholders = lessonIds.joinToString(",") { "?" }
+            val idsArray = lessonIds.toTypedArray()
+            
+            // 2. Delete sub-records for these lessons
+            db.delete(TABLE_RATINGS, "entity_id IN ($placeholders) AND entity_type = 'lesson'", idsArray)
+            db.delete(TABLE_COMMENTS, "lesson_id IN ($placeholders)", idsArray)
+            db.delete(TABLE_CONFUSING_REPORTS, "lesson_id IN ($placeholders)", idsArray)
+            db.delete(TABLE_REFERENCES, "lesson_id IN ($placeholders)", idsArray)
+            db.delete(TABLE_QUIZ_QUESTIONS, "lesson_id IN ($placeholders)", idsArray)
+        }
+
+        // 3. Delete lessons themselves
+        db.delete(TABLE_LESSONS, "course_id = ?", arrayOf(courseId.toString()))
+        // 4. Delete enrollments
+        db.delete(TABLE_ENROLLMENTS, "course_id = ?", arrayOf(courseId.toString()))
+        
+        // 5. Delete associated projects and their ratings
+        val projectIds = mutableListOf<String>()
+        db.rawQuery("SELECT project_id FROM $TABLE_PROJECTS WHERE related_course_id = ?", arrayOf(courseId.toString())).use { c ->
+            while (c.moveToNext()) {
+                projectIds.add(c.getLong(0).toString())
+            }
+        }
+        if (projectIds.isNotEmpty()) {
+            val pPlaceholders = projectIds.joinToString(",") { "?" }
+            val pIdsArray = projectIds.toTypedArray()
+            db.delete(TABLE_RATINGS, "entity_id IN ($pPlaceholders) AND entity_type = 'project'", pIdsArray)
+        }
+        db.delete(TABLE_PROJECTS, "related_course_id = ?", arrayOf(courseId.toString()))
+        
+        // 6. Delete course ratings
+        db.delete(TABLE_RATINGS, "entity_id = ? AND entity_type = 'course'", arrayOf(courseId.toString()))
+        
+        // 7. Delete the course
+        db.delete(TABLE_COURSES, "course_id = ?", arrayOf(courseId.toString()))
     }
 
     fun deleteProject(projectId: Long) {
@@ -1091,11 +1331,39 @@ class DatabaseHelper private constructor(context: Context) :
         }
     }
 
-    fun getApprovedShowcaseProjects(): List<Project> =
-        getAllProjects().filter { it.status == "approved" }
+    fun getApprovedShowcaseProjects(): List<Project> {
+        val projects = getAllProjects().filter { it.status == "approved" }
+        return sortProjectsByWeightedRating(projects)
+    }
 
-    fun getCompetitionEntries(): List<Project> =
-        getAllProjects().filter { it.isCompetitionEntry }
+    fun getCompetitionEntries(): List<Project> {
+        val projects = getAllProjects().filter { it.isCompetitionEntry }
+        return sortProjectsByWeightedRating(projects)
+    }
+
+    private fun sortProjectsByWeightedRating(projects: List<Project>): List<Project> {
+        if (projects.isEmpty()) return emptyList()
+        val ratedProjects = projects.filter { it.ratingCount > 0 }
+        val globalAvg = if (ratedProjects.isNotEmpty()) {
+            ratedProjects.map { it.rating }.average().toFloat()
+        } else {
+            3.0f
+        }
+        val minVotes = 1.0f // minimum vote threshold
+
+        return projects.sortedWith(compareByDescending<Project> { p ->
+            if (p.ratingCount == 0) {
+                0.0f
+            } else {
+                val v = p.ratingCount.toFloat()
+                val R = p.rating
+                // Bayesian weighted rating formula (IMDb style)
+                (v / (v + minVotes) * R) + (minVotes / (v + minVotes) * globalAvg)
+            }
+        }.thenByDescending { it.ratingCount }
+         .thenByDescending { it.rating }
+         .thenByDescending { it.id })
+    }
 
     private fun Cursor.toProject(): Project = Project(
         id = getLong(getColumnIndexOrThrow("project_id")),
@@ -1210,12 +1478,18 @@ class DatabaseHelper private constructor(context: Context) :
     // PROGRESS OPERATIONS
     // ----------------------------------------------------------------------------------
 
-    fun updateCourseProgress(studentId: Long, courseId: Long): Boolean {
+    enum class CourseProgressResult {
+        NONE,
+        MILESTONE_50,
+        COMPLETED_100
+    }
+
+    fun updateCourseProgress(studentId: Long, courseId: Long): CourseProgressResult {
         // Simple Progress: Watch N videos out of total M videos
         val lessons = getLessonsForCourse(courseId)
         val videoLessons = lessons.filter { it.type == "video" && it.status == "published" }
         
-        if (videoLessons.isEmpty()) return false
+        if (videoLessons.isEmpty()) return CourseProgressResult.NONE
 
         val watchedCount = videoLessons.count { it.watched }
         val newProgress = (watchedCount.toFloat() / videoLessons.size * 100).toInt()
@@ -1241,8 +1515,11 @@ class DatabaseHelper private constructor(context: Context) :
         }
         db.update(TABLE_ENROLLMENTS, cv, "student_id = ? AND course_id = ?", arrayOf(studentId.toString(), courseId.toString()))
 
-        // Returns true if progress just crossed 50% milestone
-        return oldProgress < 50 && newProgress >= 50
+        return when {
+            oldProgress < 100 && newProgress >= 100 -> CourseProgressResult.COMPLETED_100
+            oldProgress < 50 && newProgress >= 50 -> CourseProgressResult.MILESTONE_50
+            else -> CourseProgressResult.NONE
+        }
     }
 
     // ----------------------------------------------------------------------------------
@@ -1286,43 +1563,47 @@ class DatabaseHelper private constructor(context: Context) :
         val list = mutableListOf<InstructorInteraction>()
         val db = readableDatabase
         val sql = """
-            SELECT 'comment' as type, c.text, c.timestamp, l.title as lesson_title, u.full_name as user_name, u.user_id, 0.0 as rating, c.comment_id as id
+            SELECT 'comment' as type, c.text, c.timestamp, l.title as lesson_title, COALESCE(u.full_name, c.user_name, 'Student') as user_name, c.user_id, 0.0 as rating, c.comment_id as id
             FROM $TABLE_COMMENTS c
             JOIN $TABLE_LESSONS l ON c.lesson_id = l.lesson_id
             JOIN $TABLE_COURSES co ON l.course_id = co.course_id
-            JOIN $TABLE_USERS u ON c.user_id = u.user_id
-            WHERE co.instructor_id = ? 
-            AND NOT EXISTS (SELECT 1 FROM $TABLE_RATINGS r WHERE r.user_id = c.user_id AND r.entity_id = c.lesson_id AND r.entity_type = 'lesson')
+            LEFT JOIN $TABLE_USERS u ON c.user_id = u.user_id
+            WHERE (co.instructor_id = ? OR co.instructor_id IS NULL OR co.instructor_id = 0 OR NOT EXISTS (SELECT 1 FROM $TABLE_COURSES WHERE instructor_id = ?))
             
             UNION ALL
             
-            SELECT 'lesson_rating' as type, r.comment as text, r.timestamp, l.title as lesson_title, u.full_name as user_name, u.user_id, r.rating_value as rating, r.rating_id as id
+            SELECT 'lesson_rating' as type, r.comment as text, r.timestamp, l.title as lesson_title, COALESCE(u.full_name, 'Student') as user_name, u.user_id, r.rating_value as rating, r.rating_id as id
             FROM $TABLE_RATINGS r
             JOIN $TABLE_LESSONS l ON r.entity_id = l.lesson_id AND r.entity_type = 'lesson'
             JOIN $TABLE_COURSES co ON l.course_id = co.course_id
-            JOIN $TABLE_USERS u ON r.user_id = u.user_id
-            WHERE co.instructor_id = ?
+            LEFT JOIN $TABLE_USERS u ON r.user_id = u.user_id
+            WHERE (co.instructor_id = ? OR co.instructor_id IS NULL OR co.instructor_id = 0 OR NOT EXISTS (SELECT 1 FROM $TABLE_COURSES WHERE instructor_id = ?))
             
             UNION ALL
             
-            SELECT 'instructor_rating' as type, r.comment as text, r.timestamp, 'Instructor Profile' as lesson_title, u.full_name as user_name, u.user_id, r.rating_value as rating, r.rating_id as id
+            SELECT 'instructor_rating' as type, r.comment as text, r.timestamp, 'Instructor Profile' as lesson_title, COALESCE(u.full_name, 'Student') as user_name, u.user_id, r.rating_value as rating, r.rating_id as id
             FROM $TABLE_RATINGS r
-            JOIN $TABLE_USERS u ON r.user_id = u.user_id
+            LEFT JOIN $TABLE_USERS u ON r.user_id = u.user_id
             WHERE r.entity_type = 'instructor' AND r.entity_id = ?
             
             UNION ALL
             
-            SELECT 'confusing' as type, 'Marked as confusing' as text, cr.timestamp, l.title as lesson_title, u.full_name as user_name, u.user_id, 0.0 as rating, cr.report_id as id
+            SELECT 'confusing' as type, 'Marked as confusing' as text, cr.timestamp, l.title as lesson_title, COALESCE(u.full_name, 'Student') as user_name, u.user_id, 0.0 as rating, cr.report_id as id
             FROM $TABLE_CONFUSING_REPORTS cr
             JOIN $TABLE_LESSONS l ON cr.lesson_id = l.lesson_id
             JOIN $TABLE_COURSES co ON l.course_id = co.course_id
-            JOIN $TABLE_USERS u ON cr.user_id = u.user_id
-            WHERE co.instructor_id = ?
+            LEFT JOIN $TABLE_USERS u ON cr.user_id = u.user_id
+            WHERE (co.instructor_id = ? OR co.instructor_id IS NULL OR co.instructor_id = 0 OR NOT EXISTS (SELECT 1 FROM $TABLE_COURSES WHERE instructor_id = ?))
             
             ORDER BY timestamp DESC
         """.trimIndent()
         
-        db.rawQuery(sql, arrayOf(instructorId.toString(), instructorId.toString(), instructorId.toString(), instructorId.toString())).use { c ->
+        db.rawQuery(sql, arrayOf(
+            instructorId.toString(), instructorId.toString(),
+            instructorId.toString(), instructorId.toString(),
+            instructorId.toString(),
+            instructorId.toString(), instructorId.toString()
+        )).use { c ->
             while (c.moveToNext()) {
                 list.add(InstructorInteraction(
                     type = c.getString(0),

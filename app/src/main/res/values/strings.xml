@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">UniCourse Hub</string>
     <string name="app_tagline">Learn, Share, Grow</string>
 
@@ -413,6 +413,19 @@
     <string name="msg_unknown_error">Unknown error</string>
     <string name="msg_processing_video">Processing your video...</string>
     <string name="msg_compression_failed">Compression Failed</string>
+
+    <!-- Delete Confirmation & Toast Messages -->
+    <string name="msg_course_deleted">Course deleted successfully.</string>
+    <string name="msg_project_deleted">Project deleted successfully.</string>
+    <string name="msg_user_deleted">User deleted successfully.</string>
+    <string name="msg_lesson_deleted">Lesson deleted successfully.</string>
+    <string name="msg_reference_deleted">Reference removed successfully.</string>
+    <string name="msg_notifications_cleared">Notifications cleared.</string>
+    <string name="msg_item_deleted">Item deleted successfully.</string>
+    <string name="msg_confirm_delete_course">Are you sure you want to delete this course? This action cannot be undone.</string>
+    <string name="msg_confirm_delete_project">Are you sure you want to delete this project? This action cannot be undone.</string>
+    <string name="msg_confirm_delete_user">Are you sure you want to delete this user? This action cannot be undone.</string>
+    <string name="msg_confirm_delete_lesson">Are you sure you want to delete this lesson? This action cannot be undone.</string>
     <string name="msg_processing_progress">Processing: %d%%</string>
     <string name="label_btn_save">Save</string>
     <string name="hint_full_name">Full name</string>
@@ -485,6 +498,26 @@
     <string name="label_student_reviews">Student Reviews</string>
     <string name="option_none_project">None / Personal Project</string>
     <string name="hint_project_comment">Leave a comment about this project...</string>
+
+    <!-- Privacy Policy & Terms -->
+    <string name="title_privacy_policy" translatable="false">Privacy Policy &amp; Terms of Service</string>
+    <string name="policy_intro_header" translatable="false">1. Introduction &amp; Acceptance</string>
+    <string name="policy_intro_body" translatable="false">Welcome to UniCourseHub. We are dedicated to safeguarding your privacy and ensuring a secure, professional learning and collaboration environment for students, instructors, and administrators. By accessing or using UniCourseHub, you agree to comply with this Privacy Policy and our Terms of Service.</string>
+    <string name="policy_collection_header" translatable="false">2. Information We Collect</string>
+    <string name="policy_collection_body" translatable="false">We collect information you provide directly when registering or updating your profile, including your full name, email address, university affiliation, and role (Student, Instructor, or Admin). We also collect course enrollments, lesson progress, quiz results, project submissions, direct messages, and comments to provide core platform functionality.</string>
+    <string name="policy_use_header" translatable="false">3. How We Use Your Information</string>
+    <string name="policy_use_body" translatable="false">Your information is used to: \n• Provide, maintain, and improve UniCourseHub educational services.\n• Facilitate communication between students and instructors.\n• Process course approvals, project reviews, and certifications.\n• Send important updates, security alerts, and push notifications.</string>
+    <string name="policy_security_header" translatable="false">4. Data Security &amp; Storage</string>
+    <string name="policy_security_body" translatable="false">We implement robust industry-standard security measures, including Firebase Authentication, secure local SQLite encrypted data storage, and tokenized session management, to protect your personal information against unauthorized access, alteration, or disclosure.</string>
+    <string name="policy_rights_header" translatable="false">5. Your Rights &amp; Account Control</string>
+    <string name="policy_rights_body" translatable="false">You maintain full control over your account. You can update your profile details, change your password, or permanently delete your account and all associated local and cloud data at any time directly through the Settings screen.</string>
+    <string name="policy_contact_header" translatable="false">6. Contact Us</string>
+    <string name="policy_contact_body" translatable="false">If you have any questions, feedback, or concerns regarding this Privacy Policy or our Terms of Service, please reach out to our support team at support@unicoursehub.com.</string>
+    <string name="register_agree_policy" translatable="false">I agree to the Privacy Policy &amp; Terms of Service</string>
+    <string name="register_view_policy_link" translatable="false">Read Privacy Policy &amp; Terms</string>
+    <string name="error_agree_policy" translatable="false">Please agree to the Privacy Policy &amp; Terms of Service to register.</string>
+    <string name="title_course_completed" translatable="false">Course Completed! 🎉</string>
+    <string name="msg_course_completed_popup" translatable="false">Great job! You have completed 100% of this course!</string>
 </resources>
 
 

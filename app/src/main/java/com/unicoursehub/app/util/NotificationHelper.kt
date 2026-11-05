@@ -1,13 +1,18 @@
 package com.unicoursehub.app.util
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.unicoursehub.app.R
+import com.unicoursehub.app.ui.main.MainActivity
 
+@SuppressLint("MissingPermission")
 class NotificationHelper(private val context: Context) {
 
     companion object {
@@ -19,6 +24,18 @@ class NotificationHelper(private val context: Context) {
 
     init {
         createNotificationChannels()
+    }
+
+    private fun getPendingIntent(): PendingIntent {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
+        return PendingIntent.getActivity(
+            context,
+            0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
     }
 
     private fun createNotificationChannels() {
@@ -64,6 +81,7 @@ class NotificationHelper(private val context: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
 
@@ -75,6 +93,7 @@ class NotificationHelper(private val context: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
 
@@ -86,6 +105,7 @@ class NotificationHelper(private val context: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(progress in 0..99)
             .setOnlyAlertOnce(true)
@@ -106,6 +126,7 @@ class NotificationHelper(private val context: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setOngoing(progress in 0..99)
             .setOnlyAlertOnce(true)
@@ -124,6 +145,7 @@ class NotificationHelper(private val context: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setOngoing(true)
             .setProgress(100, 0, true)

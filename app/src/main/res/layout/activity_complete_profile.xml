@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/cp_btn_continue"
-            android:textColor="@color/white" />
+            android:textColor="@color/button_text" />
 
         <TextView
             android:id="@+id/tvGoLogin"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <!-- Sticky Video Player Area -->
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#1A1A1A"
+        android:background="@color/surface"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="12dp"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textStyle="bold"
             android:textSize="16sp"
             android:paddingBottom="8dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="Resources"
-            android:textColor="#80FFFFFF"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             android:paddingBottom="8dp" />
 
@@ -85,7 +85,7 @@
             android:layout_height="40dp"
             android:padding="8dp"
             android:src="@drawable/ic_more_vert"
-            app:tint="@color/white"
+            app:tint="@color/text_primary"
             android:clickable="true"
             android:focusable="true"
             android:visibility="gone" />
@@ -112,7 +112,7 @@
                     android:id="@+id/tvProjectTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/primary_light"
+                    android:textColor="@color/text_secondary"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:textAllCaps="true"
@@ -132,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:textColor="#BDBDBD"
+                    android:textColor="@color/text_secondary"
                     android:textSize="15sp"
                     android:lineSpacingExtra="4dp" />
 
@@ -149,6 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
+                        android:textColor="@color/button_text"
                         android:text="@string/btn_rate_project" />
                 </LinearLayout>
 
@@ -175,8 +176,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:text="@string/btn_view_doc"
-                    android:textColor="@color/white"
-                    app:strokeColor="@color/white"
+                    android:textColor="@color/text_primary"
+                    app:strokeColor="@color/text_primary"
                     android:visibility="gone" />
 
                 <Button
@@ -186,8 +187,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:text="@string/btn_open_github"
-                    android:textColor="@color/white"
-                    app:strokeColor="@color/white"
+                    android:textColor="@color/text_primary"
+                    app:strokeColor="@color/text_primary"
                     android:visibility="gone" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

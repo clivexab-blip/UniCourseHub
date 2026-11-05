@@ -17,20 +17,29 @@ import com.unicoursehub.app.util.SessionManager
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var session: SessionManager
-    lateinit var db: DatabaseHelper
+    private lateinit var db: DatabaseHelper
+    private lateinit var session: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        session = SessionManager(this)
         db = DatabaseHelper.getInstance(this)
+        session = SessionManager(this)
 
         if (!session.isLoggedIn()) {
             goToLogin()
             return
+        }
+
+        // Fix: ALWAYS synchronize SessionManager role with the SQLite database user record
+        val currentUserId = session.getUserId()
+        if (currentUserId != -1L) {
+            val dbUser = db.getUserById(currentUserId)
+            if (dbUser != null && dbUser.role.isNotEmpty()) {
+                session.saveSession(dbUser.id, dbUser.role)
+            }
         }
 
         setupToolbarTitle()
@@ -85,47 +94,47 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNav.inflateMenu(R.menu.bottom_nav_admin)
                 binding.bottomNav.setOnItemSelectedListener {
                     when (it.itemId) {
-                        R.id.nav_dashboard -> showFragment(AdminDashboardFragment(), "admin_dash")
-                        R.id.nav_users -> showFragment(ManageUsersFragment(), "manage_users")
-                        R.id.nav_courses -> showFragment(ManageCoursesFragment(), "manage_courses")
-                        R.id.nav_pending -> showFragment(PendingApprovalsFragment(), "pending")
+                        R.id.nav_dashboard -> showFragment(AdminDashboardFragment(), "admin_dash", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_users -> showFragment(ManageUsersFragment(), "manage_users", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_courses -> showFragment(ManageCoursesFragment(), "manage_courses", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_pending -> showFragment(PendingApprovalsFragment(), "pending", addToBackStack = false, clearBackStack = true)
                     }
                     true
                 }
-                showFragment(AdminDashboardFragment(), "admin_dash")
+                showFragment(AdminDashboardFragment(), "admin_dash", addToBackStack = false, clearBackStack = true)
             }
             "instructor" -> {
                 binding.bottomNav.inflateMenu(R.menu.bottom_nav_instructor)
                 binding.bottomNav.setOnItemSelectedListener {
                     when (it.itemId) {
-                        R.id.nav_home -> showFragment(InstructorDashboardFragment(), "inst_dash")
-                        R.id.nav_courses -> showFragment(MyCoursesFragment(), "my_courses")
-                        R.id.nav_students -> showFragment(MyStudentsFragment(), "my_students")
-                        R.id.nav_projects -> showFragment(StudentProjectsFragment(), "student_projects")
+                        R.id.nav_home -> showFragment(InstructorDashboardFragment(), "inst_dash", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_courses -> showFragment(MyCoursesFragment(), "my_courses", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_students -> showFragment(MyStudentsFragment(), "my_students", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_projects -> showFragment(StudentProjectsFragment(), "student_projects", addToBackStack = false, clearBackStack = true)
                     }
                     true
                 }
-                showFragment(InstructorDashboardFragment(), "inst_dash")
+                showFragment(InstructorDashboardFragment(), "inst_dash", addToBackStack = false, clearBackStack = true)
             }
             else -> {
                 binding.bottomNav.inflateMenu(R.menu.bottom_nav_student)
                 binding.bottomNav.setOnItemSelectedListener {
                     when (it.itemId) {
-                        R.id.nav_home -> showFragment(StudentDashboardFragment(), "stud_dash")
-                        R.id.nav_courses -> showFragment(StudentCoursesFragment(), "stud_courses")
-                        R.id.nav_learn -> showFragment(VideoLearningFragment(), "video_learn")
-                        R.id.nav_projects -> showFragment(MyProjectsFragment(), "my_projects")
+                        R.id.nav_home -> showFragment(StudentDashboardFragment(), "stud_dash", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_courses -> showFragment(StudentCoursesFragment(), "stud_courses", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_learn -> showFragment(VideoLearningFragment(), "video_learn", addToBackStack = false, clearBackStack = true)
+                        R.id.nav_projects -> showFragment(MyProjectsFragment(), "my_projects", addToBackStack = false, clearBackStack = true)
                     }
                     true
                 }
-                showFragment(StudentDashboardFragment(), "stud_dash")
+                showFragment(StudentDashboardFragment(), "stud_dash", addToBackStack = false, clearBackStack = true)
             }
         }
     }
 
     private fun setupMenuButtons() {
         binding.btnBell.setOnClickListener {
-            showFragment(NotificationsFragment(), "notifications")
+            showFragment(NotificationsFragment(), "notifications", addToBackStack = true)
         }
 
         binding.btnMenu.setOnClickListener { anchor ->
@@ -144,20 +153,21 @@ class MainActivity : AppCompatActivity() {
                                 "admin" -> AdminProfileFragment()
                                 "instructor" -> InstructorProfileFragment()
                                 else -> StudentProfileFragment()
-                            }
+                            },
+                            addToBackStack = true
                         )
                         true
                     }
-                    R.id.menu_showcase -> { showFragment(ShowcaseFragment()); true }
+                    R.id.menu_showcase -> { showFragment(ShowcaseFragment(), addToBackStack = true); true }
                     R.id.menu_insights -> { showFragment(InsightsFragment(), addToBackStack = true); true }
-                    R.id.menu_competition -> { showFragment(CompetitionFragment()); true }
-                    R.id.menu_messages -> { showFragment(MessagesFragment()); true }
-                    R.id.menu_interactions -> { showFragment(InstructorInteractionsFragment()); true }
-                    R.id.menu_downloads -> { showFragment(DownloadsFragment()); true }
-                    R.id.menu_references -> { showFragment(ReferencesFragment()); true }
-                    R.id.menu_settings -> { showFragment(SettingsFragment()); true }
-                    R.id.menu_post_project -> { showFragment(PostProjectFragment()); true }
-                    R.id.menu_post_course -> { showFragment(PostCourseFragment()); true }
+                    R.id.menu_competition -> { showFragment(CompetitionFragment(), addToBackStack = true); true }
+                    R.id.menu_messages -> { showFragment(MessagesFragment(), addToBackStack = true); true }
+                    R.id.menu_interactions -> { showFragment(InstructorInteractionsFragment(), addToBackStack = true); true }
+                    R.id.menu_downloads -> { showFragment(DownloadsFragment(), addToBackStack = true); true }
+                    R.id.menu_references -> { showFragment(ReferencesFragment(), addToBackStack = true); true }
+                    R.id.menu_settings -> { showFragment(SettingsFragment(), addToBackStack = true); true }
+                    R.id.menu_post_project -> { showFragment(PostProjectFragment(), addToBackStack = true); true }
+                    R.id.menu_post_course -> { showFragment(PostCourseFragment(), addToBackStack = true); true }
                     R.id.menu_logout -> { logout(); true }
                     else -> false
                 }
@@ -166,19 +176,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** Public helper so fragments can navigate to another fragment (e.g. dashboard cards). */
-    fun showFragment(fragment: Fragment, tag: String? = null, addToBackStack: Boolean = false) {
+    /** Public helper so fragments can navigate to another fragment (e.g. dashboard cards, edit/delete, sub-screens). */
+    fun showFragment(
+        fragment: Fragment,
+        tag: String? = null,
+        addToBackStack: Boolean = true,
+        clearBackStack: Boolean = false
+    ) {
+        if (clearBackStack) {
+            supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+
         val transaction = supportFragmentManager.beginTransaction()
             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
             .replace(R.id.fragmentContainer, fragment, tag)
-        
+
         if (addToBackStack) {
             transaction.addToBackStack(tag)
-        } else {
-            // When navigating via bottom nav (main tabs), clear the backstack
-            supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
-        
+
         transaction.commit()
     }
 
@@ -216,13 +232,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnMenu.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
         binding.tvToolbarTitle.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
         binding.btnBell.parent.let { (it as? android.view.View)?.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE }
-        // Hide the whole top bar container if possible
         (binding.btnMenu.parent as? android.view.View)?.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
     }
 
     fun setBottomNavVisibility(visible: Boolean) {
         binding.bottomNav.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
-        // Also hide the divider above it
-        findViewById<android.view.View>(R.id.navDivider)?.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
+        binding.navDivider.visibility = if (visible) android.view.View.VISIBLE else android.view.View.GONE
     }
 }

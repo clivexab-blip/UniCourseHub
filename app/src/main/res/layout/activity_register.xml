@@ -198,6 +198,26 @@
             android:visibility="gone"
             tools:text="Error occurred" />
 
+        <CheckBox
+            android:id="@+id/cbPolicy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/register_agree_policy"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvViewPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/register_view_policy_link"
+            android:textColor="@color/primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/btnCreateAccount"
             style="@style/ButtonPrimary"
@@ -205,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="@string/register_btn_text"
-            android:textColor="@color/white" />
+            android:textColor="@color/button_text" />
 
         <TextView
             android:id="@+id/tvGoLogin"

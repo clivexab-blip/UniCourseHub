@@ -83,6 +83,10 @@ class ProjectReviewFragment : Fragment() {
             }
         }
 
+        binding.videoPlaceholder.setOnClickListener {
+            initializePlayer(project)
+        }
+
         initializePlayer(project)
     }
 
@@ -200,7 +204,7 @@ class ProjectReviewFragment : Fragment() {
             .create()
         
         dialogView.findViewById<TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
-        dialogView.findViewById<TextView>(R.id.tvMessage).text = "Are you sure you want to delete this project?"
+        dialogView.findViewById<TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_project)
         dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setImageResource(R.drawable.ic_close_circle)
         dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setColorFilter(requireContext().getColor(R.color.danger))
         
@@ -209,7 +213,7 @@ class ProjectReviewFragment : Fragment() {
             text = getString(R.string.btn_delete)
             setOnClickListener {
                 db.deleteProject(projectId)
-                Toast.makeText(requireContext(), R.string.msg_account_deleted, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.msg_project_deleted, Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
                 parentFragmentManager.popBackStack()
             }
@@ -224,13 +228,18 @@ class ProjectReviewFragment : Fragment() {
         player = ExoPlayer.Builder(requireContext()).build().also { exoPlayer ->
             binding.playerView.player = exoPlayer
             
-            val videoUri = project.localVideoPath ?: project.videoUrl
+            val videoUri = project.localVideoPath?.takeIf { it.isNotEmpty() } ?: project.videoUrl?.takeIf { it.isNotEmpty() }
             if (videoUri != null) {
+                binding.videoPlaceholder.visibility = View.GONE
+                binding.playerView.visibility = View.VISIBLE
                 val uri = if (videoUri.startsWith("/")) "file://$videoUri" else videoUri
                 val mediaItem = MediaItem.fromUri(uri)
                 exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.prepare()
                 exoPlayer.playWhenReady = true
+            } else {
+                binding.videoPlaceholder.visibility = View.VISIBLE
+                binding.playerView.visibility = View.GONE
             }
         }
 

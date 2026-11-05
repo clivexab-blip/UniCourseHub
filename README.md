@@ -120,6 +120,36 @@ UniCourseHub leverages high-performance industry APIs to deliver a premium exper
 - OkHttp3: Handles high-speed networking for REST API communication with the Firebase Cloud infrastructure.
 - SQLite Database: Local-first persistence engine using a highly optimized version 15 schema for data speed and reliability.
 
+## AI-Driven Development & Architecture
+
+UniCourseHub was conceptualized, architected, and built with the collaborative assistance of advanced AI (including Google's Gemini Pro API and AI-driven development workflows):
+
+1. **Architectural Scaffolding & Multi-Role Design**: AI assisted in establishing the clean separation of concerns across Admin, Instructor, and Student portals, ensuring robust RBAC (Role-Based Access Control) and unified navigation via `MainActivity`.
+2. **Generative AI Features (`AiHelper.kt`)**: AI integration was directly embedded into the core academic experience—powering contextual lesson chatbots (`AiChatFragment`) and automated study note summarization (`ReferencesFragment`) to optimize student exam preparation.
+3. **Asynchronous Processing & Coroutines**: AI guidance helped structure and refine complex background operations such as Media3 Transformer video compression (`VideoCompressWorker`) and offline lecture downloading (`DownloadWorker`), guaranteeing a smooth 60fps UI experience without main-thread blocking.
+
+## Database Selection & Architectural Rationale (In-Depth Analysis)
+
+UniCourseHub employs a **Local-First SQLite Database Architecture** via a highly optimized, version 15 custom database engine (`DatabaseHelper.kt`) managing 11+ interconnected relational tables. Below is the in-depth technical rationale for choosing SQLite over alternatives like Room or pure cloud NoSQL databases:
+
+### 1. Local-First Speed and Absolute Offline Availability
+- **The Challenge**: Students and instructors frequently operate in environments with intermittent internet connectivity (lecture halls, transit, remote campuses).
+- **The SQLite Advantage**: By persisting all user profiles, course structures, modules, lessons, project submissions, saved references, and interactions locally in SQLite, UniCourseHub provides **instant zero-latency data access**. App startup, course syllabus loading, and note-taking happen entirely offline without network round-trips.
+
+### 2. Deep Relational Complexity & Data Integrity
+- **The Challenge**: Academic platforms require managing heavily interconnected data structures:
+  - Users $\leftrightarrow$ Courses $\leftrightarrow$ Modules $\leftrightarrow$ Lessons
+  - Users $\leftrightarrow$ Project Submissions $\leftrightarrow$ Peer Reviews $\leftrightarrow$ Badges
+  - Users $\leftrightarrow$ Saved References $\leftrightarrow$ Notes & AI Summaries
+  - Users $\leftrightarrow$ Notifications & Direct Messages
+- **The SQLite Advantage**: Unlike NoSQL document stores (e.g., Firestore) which require complex client-side joins, data duplication, or eventual-consistency synchronization overhead, SQLite provides **full relational power**. Using native SQL `JOIN`, foreign keys, cascading constraints, and aggregation queries (`COUNT`, `SUM`), the Admin and Instructor portals can instantly compute global statistics (e.g., pending course approvals, student progress percentages, unread notification badges) with 100% data consistency.
+
+### 3. Cost Efficiency & Zero Cloud Query Latency
+- **The Rationale**: Relying solely on a cloud database for every local UI read (such as scrolling through video lessons or opening personal notes) incurs continuous bandwidth costs and network latency. SQLite acts as an ultra-fast local cache and source of truth, while Firebase Authentication and Firebase Cloud Messaging (FCM) handle secure identity management and cloud push notifications.
+
+### 4. Self-Healing Schema & Resilience (`DatabaseHelper.kt`)
+- **The Rationale**: Version 15 of `DatabaseHelper.kt` incorporates robust defensive programming and auto-repair table creation logic. If tables are missing or require migration across app updates, the database engine programmatically validates and reconstructs schemas on initialization, preventing crashes and data loss.
+
 ## Core Uniqueness
 
 - Closed-Loop Learning: UniCourseHub is the only platform that forces a connection between watching a video and publishing a project to a peer-reviewed showcase.

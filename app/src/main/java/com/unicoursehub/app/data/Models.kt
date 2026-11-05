@@ -124,3 +124,14 @@ data class AppNotification(
     val timestamp: String,
     val isRead: Boolean = false
 )
+
+data class QuizQuestion(
+    val id: Long = 0,
+    val lessonId: Long = 0,
+    val questionText: String,
+    val optionA: String,
+    val optionB: String,
+    val optionC: String,
+    val optionD: String,
+    val correctOption: Int // 0 for A, 1 for B, 2 for C, 3 for D
+)

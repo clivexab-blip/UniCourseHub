@@ -62,8 +62,8 @@ class ContentManagementFragment : Fragment() {
                 .setView(dialogView)
                 .create()
             
-            dialogView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.settings_delete)
-            dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = "Are you sure you want to delete this entire course? This will remove all lessons and enrollments."
+            dialogView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
+            dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_course)
             dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setImageResource(R.drawable.ic_close_circle)
             dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setColorFilter(requireContext().getColor(R.color.danger))
             
@@ -72,6 +72,7 @@ class ContentManagementFragment : Fragment() {
                 text = getString(R.string.btn_delete)
                 setOnClickListener {
                     db.deleteCourse(courseId)
+                    android.widget.Toast.makeText(requireContext(), R.string.msg_course_deleted, android.widget.Toast.LENGTH_SHORT).show()
                     (requireActivity() as MainActivity).showFragment(MyCoursesFragment())
                     dialog.dismiss()
                 }
@@ -136,8 +137,8 @@ class ContentManagementFragment : Fragment() {
                         .setView(dialogView)
                         .create()
                     
-                    dialogView.findViewById<android.widget.TextView>(R.id.tvTitle).text = "Delete Lesson"
-                    dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = "Are you sure you want to delete this lesson? This will remove all ratings and comments for this video."
+                    dialogView.findViewById<android.widget.TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
+                    dialogView.findViewById<android.widget.TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_lesson)
                     dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setImageResource(R.drawable.ic_close_circle)
                     dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setColorFilter(requireContext().getColor(R.color.danger))
                     
@@ -146,6 +147,7 @@ class ContentManagementFragment : Fragment() {
                         text = getString(R.string.btn_delete)
                         setOnClickListener {
                             db.deleteLesson(lesson.id)
+                            android.widget.Toast.makeText(requireContext(), R.string.msg_lesson_deleted, android.widget.Toast.LENGTH_SHORT).show()
                             refresh()
                             dialog.dismiss()
                         }

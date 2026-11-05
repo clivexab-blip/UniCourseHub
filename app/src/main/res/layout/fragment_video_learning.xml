@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <!-- Sticky Video Player Area -->
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#1A1A1A"
+        android:background="@color/surface"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="12dp"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lectures"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textStyle="bold"
             android:textSize="16sp"
             android:paddingBottom="8dp"
@@ -73,9 +73,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="More"
-            android:textColor="#80FFFFFF"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/btnTakeQuizHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bg_status_purple"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:text="📝 Take Quiz"
+            android:textColor="@color/purple_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
 
         <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
 
@@ -83,7 +101,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_download_circle"
-            app:tint="@color/white" />
+            app:tint="@color/text_primary" />
     </LinearLayout>
 
     <!-- Content Area -->
@@ -132,7 +150,7 @@
                     android:id="@+id/tvCourseTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -143,8 +161,8 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                     <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_star" app:tint="@color/warning" />
-                    <TextView android:id="@+id/tvRating" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:textColor="#BDBDBD" android:textSize="13sp" />
-                    <TextView android:id="@+id/tvCompletion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:textColor="#BDBDBD" android:textSize="13sp" />
+                    <TextView android:id="@+id/tvRating" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:textColor="@color/text_secondary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tvCompletion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:textColor="@color/text_secondary" android:textSize="13sp" />
                 </LinearLayout>
 
                 <TextView
@@ -152,7 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:textColor="#BDBDBD"
+                    android:textColor="@color/text_secondary"
                     android:textSize="14sp"
                     android:lineSpacingExtra="4dp" />
 
@@ -163,8 +181,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="@string/btn_message_instructor"
-                    android:textColor="@color/white"
-                    app:strokeColor="@color/white" />
+                    android:textColor="@color/text_primary"
+                    app:strokeColor="@color/text_primary" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -176,7 +194,7 @@
             android:layout_marginTop="100dp"
             android:gravity="center"
             android:text="@string/video_no_course_state"
-            android:textColor="#80FFFFFF"
+            android:textColor="@color/text_secondary"
             android:visibility="gone" />
 
     </FrameLayout>

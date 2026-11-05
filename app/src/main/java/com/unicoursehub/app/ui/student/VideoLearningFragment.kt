@@ -24,6 +24,7 @@ import com.unicoursehub.app.data.Lesson
 import com.unicoursehub.app.data.workers.DownloadWorker
 import com.unicoursehub.app.databinding.FragmentVideoLearningBinding
 import com.unicoursehub.app.ui.adapters.ModuleAdapter
+import com.unicoursehub.app.ui.dialogs.QuizStudentDialog
 import com.unicoursehub.app.ui.main.MainActivity
 import com.unicoursehub.app.util.SessionManager
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +35,7 @@ class VideoLearningFragment : Fragment() {
 
     private var _binding: FragmentVideoLearningBinding? = null
     private val binding get() = _binding!!
+    private lateinit var db: DatabaseHelper
     private var player: ExoPlayer? = null
     private var currentLesson: Lesson? = null
 
@@ -58,7 +60,7 @@ class VideoLearningFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val db = DatabaseHelper.getInstance(requireContext())
+        db = DatabaseHelper.getInstance(requireContext())
         val session = SessionManager(requireContext())
 
         var courseId = arguments?.getLong(ARG_COURSE_ID) ?: -1L
@@ -115,13 +117,15 @@ class VideoLearningFragment : Fragment() {
                 onLessonClick = { lesson ->
                     selectLesson(lesson)
                     lifecycleScope.launch {
-                        val milestoneReached = withContext(Dispatchers.IO) {
+                        val progressResult = withContext(Dispatchers.IO) {
                             db.markLessonWatched(lesson.id)
                             db.updateCourseProgress(session.getUserId(), courseId)
                         }
                         
-                        if (milestoneReached) {
-                            showMilestoneDialog()
+                        when (progressResult) {
+                            DatabaseHelper.CourseProgressResult.COMPLETED_100 -> showCourseCompletionDialog()
+                            DatabaseHelper.CourseProgressResult.MILESTONE_50 -> showMilestoneDialog()
+                            else -> {}
                         }
 
                         val newEnrollments = withContext(Dispatchers.IO) { db.getEnrollmentsForStudent(session.getUserId()) }
@@ -196,7 +200,12 @@ class VideoLearningFragment : Fragment() {
                     lesson.linkedDocPath?.let { com.unicoursehub.app.util.FileViewerHelper.viewDocument(requireContext(), it) }
                 }
                 "Take Quiz" -> {
-                    Toast.makeText(requireContext(), "Quiz feature coming soon!", Toast.LENGTH_SHORT).show()
+                    val questions = db.getQuizQuestionsForLesson(lesson.id)
+                    if (questions.isEmpty()) {
+                        Toast.makeText(requireContext(), "No quiz questions created for this lesson yet.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        QuizStudentDialog(requireContext(), questions).show()
+                    }
                 }
                 "Post a Question" -> {
                     currentLesson = lesson
@@ -324,6 +333,51 @@ class VideoLearningFragment : Fragment() {
         dialog.show()
     }
 
+    private fun showCourseCompletionDialog() {
+        val db = DatabaseHelper.getInstance(requireContext())
+        val session = SessionManager(requireContext())
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_rating, null)
+        val ratingBar = dialogView.findViewById<RatingBar>(R.id.ratingBar)
+        val etComment = dialogView.findViewById<EditText>(R.id.etComment)
+        val btnSubmit = dialogView.findViewById<View>(R.id.btnSubmit)
+        val btnClose = dialogView.findViewById<View>(R.id.btnClose)
+        val tvTitle = dialogView.findViewById<TextView>(R.id.tvRatingTitle)
+        val tvSubtitle = dialogView.findViewById<TextView>(R.id.tvRatingSubtitle)
+
+        tvTitle.text = getString(R.string.title_course_completed)
+        tvSubtitle.text = getString(R.string.msg_course_completed_popup)
+
+        player?.pause()
+
+        val dialog = AlertDialog.Builder(requireContext(), R.style.Theme_UniCourseHub_NoBar)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        btnSubmit.setOnClickListener {
+            val ratingValue = ratingBar.rating
+            val commentText = etComment.text.toString().trim()
+            
+            currentLesson?.let { lesson ->
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val course = db.getCourseById(lesson.courseId)
+                    if (course != null) {
+                        db.rateInstructor(course.instructorId, session.getUserId(), ratingValue, commentText)
+                    }
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), R.string.msg_comment_success, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+        btnClose.setOnClickListener { dialog.dismiss() }
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+    }
+
     private fun showMilestoneDialog() {
         val db = DatabaseHelper.getInstance(requireContext())
         val session = SessionManager(requireContext())
@@ -348,7 +402,7 @@ class VideoLearningFragment : Fragment() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     val course = db.getCourseById(lesson.courseId)
                     
-                    // Rate the Instructor directly with a comment
+                    // Rate the Instructor independently with comment
                     if (course != null) {
                         db.rateInstructor(course.instructorId, session.getUserId(), ratingValue, commentText)
                     }
@@ -388,6 +442,22 @@ class VideoLearningFragment : Fragment() {
         
         // Show decimal average
         binding.tvRating.text = String.format(java.util.Locale.getDefault(), "%.1f", lesson.rating)
+
+        // Show/Hide Take Quiz Header Button
+        val quizQuestions = db.getQuizQuestionsForLesson(lesson.id)
+        if (lesson.hasQuiz || quizQuestions.isNotEmpty()) {
+            binding.btnTakeQuizHeader.visibility = View.VISIBLE
+            binding.btnTakeQuizHeader.setOnClickListener {
+                val qList = if (quizQuestions.isNotEmpty()) quizQuestions else db.getQuizQuestionsForLesson(lesson.id)
+                if (qList.isNotEmpty()) {
+                    QuizStudentDialog(requireContext(), qList).show()
+                } else {
+                    Toast.makeText(requireContext(), "No quiz questions created for this lesson yet.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            binding.btnTakeQuizHeader.visibility = View.GONE
+        }
 
         initializePlayer(lesson)
     }

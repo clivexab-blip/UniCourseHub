@@ -172,7 +172,7 @@ class CourseReviewFragment : Fragment() {
             .create()
         
         dialogView.findViewById<TextView>(R.id.tvTitle).text = getString(R.string.btn_delete)
-        dialogView.findViewById<TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_account)
+        dialogView.findViewById<TextView>(R.id.tvMessage).text = getString(R.string.msg_confirm_delete_course)
         dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setImageResource(R.drawable.ic_close_circle)
         dialogView.findViewById<android.widget.ImageView>(R.id.ivIcon).setColorFilter(requireContext().getColor(R.color.danger))
         
@@ -181,7 +181,7 @@ class CourseReviewFragment : Fragment() {
             text = getString(R.string.btn_delete)
             setOnClickListener {
                 db.deleteCourse(courseId)
-                Toast.makeText(requireContext(), R.string.msg_account_deleted, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.msg_course_deleted, Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
                 parentFragmentManager.popBackStack()
             }

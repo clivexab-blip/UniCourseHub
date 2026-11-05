@@ -30,13 +30,18 @@ class PostProjectFragment : Fragment() {
     private lateinit var session: SessionManager
     private var courses = listOf<com.unicoursehub.app.data.Course>()
     private var isCompetition = false
+    private var projectId: Long = -1L
     private var selectedVideoUri: Uri? = null
     private var selectedDocUri: Uri? = null
 
     companion object {
         private const val ARG_COMPETITION = "is_competition"
-        fun newInstance(isCompetition: Boolean = false) = PostProjectFragment().apply {
-            arguments = Bundle().apply { putBoolean(ARG_COMPETITION, isCompetition) }
+        private const val ARG_PROJECT_ID = "project_id"
+        fun newInstance(isCompetition: Boolean = false, projectId: Long = -1L) = PostProjectFragment().apply {
+            arguments = Bundle().apply { 
+                putBoolean(ARG_COMPETITION, isCompetition)
+                putLong(ARG_PROJECT_ID, projectId)
+            }
         }
     }
 
@@ -50,8 +55,8 @@ class PostProjectFragment : Fragment() {
         db = DatabaseHelper.getInstance(requireContext())
         session = SessionManager(requireContext())
         isCompetition = arguments?.getBoolean(ARG_COMPETITION) ?: false
+        projectId = arguments?.getLong(ARG_PROJECT_ID) ?: -1L
 
-        // Fix: Only show courses the student is enrolled in
         val enrollments = db.getEnrollmentsForStudent(session.getUserId())
         courses = enrollments.map { it.second }
         
@@ -76,6 +81,10 @@ class PostProjectFragment : Fragment() {
             setDropDownViewResource(R.layout.item_spinner_dropdown_dark)
         }
 
+        if (projectId != -1L) {
+            loadProjectData()
+        }
+
         binding.btnUploadVideo.setOnClickListener {
             videoPickerLauncher.launch("video/*")
         }
@@ -85,6 +94,20 @@ class PostProjectFragment : Fragment() {
         }
 
         binding.btnPostProject.setOnClickListener { submit() }
+    }
+
+    private fun loadProjectData() {
+        val project = db.getAllProjects().find { it.id == projectId } ?: return
+        binding.etTitle.setText(project.title)
+        binding.etDescription.setText(project.description)
+        binding.etGithub.setText(project.githubRepo)
+        
+        val courseIndex = courses.indexOfFirst { it.id == project.relatedCourseId }
+        if (courseIndex >= 0) {
+            binding.spinnerCourse.setSelection(courseIndex + 1)
+        }
+
+        binding.btnPostProject.text = "Save Changes"
     }
 
     private val videoPickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -122,20 +145,39 @@ class PostProjectFragment : Fragment() {
 
         val localDocFile = selectedDocUri?.let { copyUriToTempFile(it, "project_doc") }
 
-        val projectId = db.createProject(
-            Project(
-                title = title,
-                studentId = session.getUserId(),
-                relatedCourseId = selectedCourse?.id ?: 0,
-                projectType = type,
-                semester = semester,
-                description = description,
-                githubRepo = github,
-                category = selectedCourse?.category ?: "General",
-                isCompetitionEntry = isCompetition,
-                linkedDocPath = localDocFile?.absolutePath
+        val targetProjectId = if (projectId == -1L) {
+            db.createProject(
+                Project(
+                    title = title,
+                    studentId = session.getUserId(),
+                    relatedCourseId = selectedCourse?.id ?: 0,
+                    projectType = type,
+                    semester = semester,
+                    description = description,
+                    githubRepo = github,
+                    category = selectedCourse?.category ?: "General",
+                    isCompetitionEntry = isCompetition,
+                    linkedDocPath = localDocFile?.absolutePath
+                )
             )
-        )
+        } else {
+            db.updateProject(
+                Project(
+                    id = projectId,
+                    title = title,
+                    studentId = session.getUserId(),
+                    relatedCourseId = selectedCourse?.id ?: 0,
+                    projectType = type,
+                    semester = semester,
+                    description = description,
+                    githubRepo = github,
+                    category = selectedCourse?.category ?: "General",
+                    isCompetitionEntry = isCompetition,
+                    linkedDocPath = localDocFile?.absolutePath
+                )
+            )
+            projectId
+        }
 
         // Trigger Video Compression if video selected
         selectedVideoUri?.let { uri ->
@@ -143,7 +185,7 @@ class PostProjectFragment : Fragment() {
             tempVideoFile?.let { file ->
                 val inputData = Data.Builder()
                     .putString("input_path", file.absolutePath)
-                    .putLong("project_id", projectId)
+                    .putLong("project_id", targetProjectId)
                     .putString("lesson_title", title)
                     .build()
 
@@ -157,9 +199,10 @@ class PostProjectFragment : Fragment() {
 
         Toast.makeText(requireContext(), getString(R.string.msg_project_submitted_review), Toast.LENGTH_LONG).show()
         
-        // Remove "Post Project" from backstack and replace with "Project Detail"
-        parentFragmentManager.popBackStack()
-        (requireActivity() as MainActivity).showFragment(ProjectDetailFragment.newInstance(projectId), addToBackStack = true)
+        if (parentFragmentManager.backStackEntryCount > 0) {
+            parentFragmentManager.popBackStack()
+        }
+        (requireActivity() as? MainActivity)?.showFragment(ProjectDetailFragment.newInstance(targetProjectId), addToBackStack = true)
     }
 
     private fun copyUriToTempFile(uri: Uri, prefix: String): File? {

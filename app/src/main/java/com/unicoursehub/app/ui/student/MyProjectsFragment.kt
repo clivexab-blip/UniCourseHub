@@ -66,7 +66,10 @@ class MyProjectsFragment : Fragment() {
         popup.setOnMenuItemClickListener { item ->
             when (item.title) {
                 getString(com.unicoursehub.app.R.string.btn_edit) -> {
-                    // Logic to edit project
+                    (requireActivity() as? MainActivity)?.showFragment(
+                        PostProjectFragment.newInstance(isCompetition = false, projectId = project.id),
+                        addToBackStack = true
+                    )
                 }
                 getString(com.unicoursehub.app.R.string.btn_delete) -> {
                     showDeleteConfirm(project)
@@ -84,7 +87,7 @@ class MyProjectsFragment : Fragment() {
             .create()
 
         dialogView.findViewById<android.widget.TextView>(com.unicoursehub.app.R.id.tvTitle).text = getString(com.unicoursehub.app.R.string.btn_delete)
-        dialogView.findViewById<android.widget.TextView>(com.unicoursehub.app.R.id.tvMessage).text = "Are you sure you want to delete '${project.title}'?"
+        dialogView.findViewById<android.widget.TextView>(com.unicoursehub.app.R.id.tvMessage).text = getString(com.unicoursehub.app.R.string.msg_confirm_delete_project)
         dialogView.findViewById<android.widget.ImageView>(com.unicoursehub.app.R.id.ivIcon).apply {
             setImageResource(com.unicoursehub.app.R.drawable.ic_close_circle)
             setColorFilter(requireContext().getColor(com.unicoursehub.app.R.color.danger))
@@ -95,6 +98,7 @@ class MyProjectsFragment : Fragment() {
             text = getString(com.unicoursehub.app.R.string.btn_delete)
             setOnClickListener {
                 db.deleteProject(project.id)
+                android.widget.Toast.makeText(requireContext(), R.string.msg_project_deleted, android.widget.Toast.LENGTH_SHORT).show()
                 refresh()
                 dialog.dismiss()
             }
