@@ -1,7 +1,7 @@
 # UniCourseHub - Premium Academic Learning Platform
 
 ### Video Presentation
-[View the project presentation here](https://drive.google.com/folderview?id=1EdoHygBuBT6QRtceZFDvcBbtZh1-sk-r)
+[View the project presentation here](https://drive.google.com/file/d/1WtEtMNWC-bQyMroVQQgcrZ24oqjNvfbT/view?usp=sharing)
 *(Note: When viewing the video presentation, please double-click the video file to enable repeat playback or watch it multiple times.)*
 
 UniCourseHub is a comprehensive, multi-role educational ecosystem built to provide a professional academic experience. It integrates structured video-based learning with a practical project-sharing economy, overseen by university administrators and enhanced by Google's Gemini AI.
