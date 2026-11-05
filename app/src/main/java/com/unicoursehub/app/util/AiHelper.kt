@@ -13,10 +13,7 @@ import java.net.URL
  */
 object AiHelper {
 
-    private val GEMINI_API_KEY = run {
-        val key = BuildConfig.GEMINI_API_KEY
-        if (key.isNotBlank()) key else String(byteArrayOf(65, 81, 46, 65, 98, 56, 82, 78, 54, 73, 88, 45, 75, 85, 73, 108, 120, 105, 116, 48, 76, 120, 101, 73, 111, 86, 87, 78, 98, 101, 100, 98, 107, 116, 120, 98, 54, 73, 68, 51, 103, 99, 110, 108, 117, 51, 115, 109, 112, 83, 70, 80, 81))
-    }
+    private val GEMINI_API_KEY = BuildConfig.GEMINI_API_KEY
     private const val API_URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
     private const val REVISION = "2026-05-20"
 
