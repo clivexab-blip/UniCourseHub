@@ -34,7 +34,6 @@ cmake-build-*/
 *.keystore
 *.jks
 !debug.keystore
-google-services.json
 
 # User specific files
 *.swp
