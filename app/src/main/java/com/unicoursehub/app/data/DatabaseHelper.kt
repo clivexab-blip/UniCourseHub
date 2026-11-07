@@ -421,11 +421,38 @@ class DatabaseHelper private constructor(context: Context) :
         user("Dr. Brown", "brown@university.edu", "Stanford University", "INS-1003", "instructor")
         user("John Doe", "john.doe@university.edu", "Stanford University", "STU-1001", "student")
         user("Sarah K.", "sarah.k@university.edu", "Stanford University", "STU-1002", "student")
+        user("Demo Student", "student2@gmail.com", "Stanford University", "STU-2002", "student")
+        user("Demo Instructor", "instructor2@gmail.com", "Stanford University", "INS-2002", "instructor")
+        user("Demo Admin", "admin2@gmail.com", "Stanford University", "ADM-2002", "admin")
 
         ensureSampleCoursesExist(db)
     }
 
+    private fun ensureSeedUsersExist(db: SQLiteDatabase) {
+        fun ensureUser(name: String, email: String, uni: String, sid: String, role: String) {
+            db.rawQuery("SELECT user_id FROM $TABLE_USERS WHERE LOWER(email) = LOWER(?)", arrayOf(email)).use { c ->
+                if (!c.moveToFirst()) {
+                    val cv = ContentValues().apply {
+                        put("full_name", name)
+                        put("email", email)
+                        put("university", uni)
+                        put("student_id", sid)
+                        put("role", role)
+                        put("status", "active")
+                        put("created_at", "2024")
+                    }
+                    db.insert(TABLE_USERS, null, cv)
+                }
+            }
+        }
+
+        ensureUser("Demo Student", "student2@gmail.com", "Stanford University", "STU-2002", "student")
+        ensureUser("Demo Instructor", "instructor2@gmail.com", "Stanford University", "INS-2002", "instructor")
+        ensureUser("Demo Admin", "admin2@gmail.com", "Stanford University", "ADM-2002", "admin")
+    }
+
     fun ensureSampleCoursesExist(db: SQLiteDatabase) {
+        ensureSeedUsersExist(db)
         var count = 0
         db.rawQuery("SELECT COUNT(*) FROM $TABLE_COURSES", null).use { c ->
             if (c.moveToFirst()) count = c.getInt(0)

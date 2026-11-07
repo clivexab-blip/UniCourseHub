@@ -1,5 +1,13 @@
 # UniCourseHub - Premium Academic Learning Platform
 
+## Demo Login Credentials
+- **Student:** `student2@gmail.com`
+- **Instructor:** `instructor2@gmail.com`
+- **Admin:** `admin2@gmail.com`
+- **Password (for all):** `960516`
+
+---
+
 ### Video Presentation
 [View the project presentation here](https://drive.google.com/file/d/1WtEtMNWC-bQyMroVQQgcrZ24oqjNvfbT/view?usp=sharing)
 *(Note: When viewing the video presentation, please double-click the video file to enable repeat playback or watch it multiple times.)*
